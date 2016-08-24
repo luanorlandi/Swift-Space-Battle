@@ -19,6 +19,6 @@ function Title:new(pos)
 	return T
 end
 
-function Title:clear()
+function Title:clean()
 	layer:removeProp(self.sprite)
 end
