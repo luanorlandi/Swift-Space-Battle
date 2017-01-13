@@ -1,0 +1,43 @@
+name: aaaa
+full_name: aaaa
+author: Unknown
+version_code: 100
+version_name: 1.0
+sdk:
+  repository: https://github.com/moai/moai-dev.git
+  ref: "1.5-stable"
+
+modules:
+  BOX2D: true
+  CHIPMUNK: true
+  CURL: true
+  CRYPTO: true
+  EXPAT: true
+  FREETYPE: true
+  HTTP_CLIENT: true
+  JSON: true
+  JPG: true
+  LUAEXT: true
+  MONGOOSE: true
+  OGG: true
+  OPENSSL: true
+  SQLITE3: true
+  TINYXML: true
+  PNG: true
+  SFMT: true
+  VORBIS: true
+  UNTZ: true
+  LUAJIT: true
+
+extensions:
+     miscellaneous: yes
+     adcolony: no
+     billing: yes
+     chartboost: yes
+     crittercism: yes
+     facebook: yes
+     push: yes
+     tapjoy: yes
+     twitter: yes
+     tstorewall: yes
+     tstoregamecenter: yes

@@ -3,8 +3,9 @@
 *.psd
 
 # Folders
+distribute
+build
 latex
-moai
 
 # Compiled Lua sources
 luac.out
