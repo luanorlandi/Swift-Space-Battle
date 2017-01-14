@@ -55,7 +55,7 @@ function Player:new(pos)
 	coroutine.resume(spawnThread)
 	table.insert(P.threads, spawnThread)
 	
-	-- regeneracao de hp
+	-- hp regeneration
 	local hpRegenThread = coroutine.create(function()
 		Ship.hpRegen(P)
 	end)
@@ -67,11 +67,11 @@ end
 
 function Player:move()
 	if self.spawned then
-		-- definindo aceleracao
+		-- define acceleration
 		if input.left == true then self.acc.x = -self.maxAcc else self.acc.x = 0.0 end
 		if input.right == true then self.acc.x = self.maxAcc end
 		
-		-- gira a nave
+		-- rotate ship
 		if input.up == true and not self.rot:isActive() and self.aim.y == -1 then
 			self.rot = self.sprite:moveRot(180, 0.8)
 			self.aim.y = 1

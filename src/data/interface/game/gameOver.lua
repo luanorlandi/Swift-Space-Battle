@@ -12,17 +12,17 @@ GameOver = {}
 GameOver.__index = GameOver
 
 function GameOver:new(score)
-	-- se receber o parametro score, este metodo mostrara na tela o novo record da partida
+	-- if receive a score, it will show a new record
 
 	local G = {}
 	setmetatable(G, GameOver)
 	
 	G.gap = 80 * screen.scale
-	
+
 	G.gameOverText = GameText:new("GAME OVER", gameOverFont, gameOverFontSize, Vector:new(0, 2 * G.gap))
 	G.gameOverText.text:setColor(1, 0, 0)
 	
-	-- caso nao bateu o record, nao mostra o texto da pontuacao
+	-- if did not scored a new record, do not show a score label
 	G.newRecordText = nil
 	G.highestScoreText = nil
 	

@@ -36,9 +36,9 @@ function Ship:new(deck, pos)
 	S.hp = 100
 	S.maxHp = 100
 	
-	S.dmgLast = gameTime	-- ultima vez que sofreu dano
-	S.regenRate = 20		-- regeneracao de vida por segundo
-	S.regenCd = 2.5			-- tempo de recarga para regenerar vida apos receber dano
+	S.dmgLast = gameTime	-- last time that receive damage
+	S.regenRate = 20		-- hp regeneration per second
+	S.regenCd = 2.5			-- cooldown to start regenerating hp
 	
 	S.status = "alive"
 	
@@ -57,10 +57,10 @@ function Ship:new(deck, pos)
 	S.fireRate = 0.4
 	
 	S.aim = Vector:new(0, 1)
-	S.wpn = {}				-- posicoes de onde os tiros surgem
+	S.wpn = {}				-- positions of where the shots appear
 	
 	S.flaDuration = 0.08
-	S.fla = {}				-- posicoes de onde as luzes dos disparos surgem
+	S.fla = {}				-- positions of where the muzzle flashs appear
 	
 	S.spawning = true
 	S.spawned = true
@@ -75,10 +75,10 @@ function Ship:new(deck, pos)
 	
 	S.rot = S.sprite:moveRot(0, 0.1)
 	
-	-- tabela contendoas threads criadas pelo objeto, para poderem ser resumidas depois
+	-- table with the threads created by the object, so can be resumed
 	S.threads = {}
 	
-	-- tabela contendo todos os desenhos criados pelas suas thread,para facilitar a remocao delas depois
+	-- table with the sprites created by the threads, so can be removed
 	S.threadsSprites = {}
 	
 	S.sprite:setLoc(S.pos.x, S.pos.y)
@@ -88,37 +88,37 @@ function Ship:new(deck, pos)
 end
 
 function Ship:move()
-	-- definindo desaceleracao
+	-- define acceleration
 	if self.acc.x == 0 and self.spd.x > 0 then self.acc.x = -self.dec end
 	if self.acc.x == 0 and self.spd.x < 0 then self.acc.x = self.dec end
 	if self.acc.y == 0 and self.spd.y > 0 then self.acc.y = -self.dec end
 	if self.acc.y == 0 and self.spd.y < 0 then self.acc.y = self.dec end
 
-	--verificando se ultrapassou a aceleracao maxima
+	-- chech if exceed maximum acceleration
 	if self.acc:norm() > self.maxAcc then
 		self.acc:normalize()
 		self.acc.x = self.acc.x * self.maxAcc
 		self.acc.y = self.acc.y * self.maxAcc
 	end
 	
-	-- definindo velocidade
+	-- define speed
 	self.spd:sum(self.acc)
 	
-	-- verificando se a velocidade eh quase nula
+	-- check if speed is almost zero
 	if self.spd.x < self.minSpd and self.spd.x > -self.minSpd then self.spd.x = 0 end
 	if self.spd.y < self.minSpd and self.spd.y > -self.minSpd then self.spd.y = 0 end
 	
-	--verificando se ultrapassou a velocidade maxima
+	-- chech if exceed maximum speed
 	if self.spd:norm() > self.maxSpd then
 		self.spd:normalize()
 		self.spd.x = self.spd.x * self.maxSpd
 		self.spd.y = self.spd.y * self.maxSpd
 	end
 	
-	-- definindo a posicao
+	-- define position
 	self.pos:sum(self.spd)
 	
-	-- verifica se passou da janela
+	-- check if exceed the screen size
 	Ship.moveLimit(self)
 	
 	self.sprite:setLoc(self.pos.x, self.pos.y)
@@ -166,10 +166,10 @@ function Ship:moveLimit()
 end
 
 function Ship:destroy()
-	-- remove o desenho da nave
+	-- remove ship sprite
 	layer:removeProp(self.sprite)
 	
-	-- remove os desenhos de todos os efeitos criados por suas threads
+	-- remove all sprite effects created by his threads
 	for i = 1, table.getn(self.threadsSprites), 1 do
 		layer:removeProp(self.threadsSprites[1])
 		table.remove(self.threadsSprites, 1)
@@ -188,8 +188,8 @@ function Ship:spawnSize()
 end
 
 function Ship:damaged(dmg)
-	--recebe um valor dmg de dano sofrido, criando uma thread de animacao para efeito da nave acertada
-	
+	-- receive a damage, create a animation effect for the hit
+
 	self.hp = self.hp - dmg
 	self.dmgLast = gameTime
 	
@@ -291,7 +291,7 @@ function Ship:hpRegen()
 			self.hp = self.hp + hpHeal
 			
 			if self.hp > self.maxHp then
-			-- verifica se curou acima do limite
+				-- check for overheal
 				self.hp = self.maxHp
 			end
 		end
@@ -319,7 +319,7 @@ function enemiesShoot()
 end
 
 function shipsCheckStatus()
-	-- checa se o jogador morreu
+	-- check if the player died
 	if player.status == "dead" then
 		if player.spawned then
 			local explodeThread = coroutine.create(function() Ship.explode(player) end)
@@ -327,7 +327,7 @@ function shipsCheckStatus()
 		end
 	end
 
-	-- checa se um inimigo morreu
+	-- check if an enemy died
 	local e = 1
 	while e <= table.getn(enemies) do
 		local ship = enemies[e]
@@ -346,13 +346,13 @@ function shipsCheckStatus()
 		end
 	end
 	
-	-- checa se o jogador ja explodiu
+	-- check if the player exploded
 	if player.destroy then
 		Ship.destroy(player)
 		playerData:dead()
 	end
 	
-	-- checa se algum inimigo que morreu ja explodiu
+	-- check if any enemy dead has exploded
 	local d = 1
 	while d <= table.getn(deadShips) do
 		local ship = deadShips[d]

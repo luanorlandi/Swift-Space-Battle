@@ -57,7 +57,7 @@ function EnemyType3:new(pos)
 	coroutine.resume(spawnThread)
 	table.insert(E.threads, spawnThread)
 	
-	-- atributos do EnemyType3
+	-- EnemyType3 attributes
 	E.playerSize = 45 * screen.scale
 	E.shotRange = 40 * screen.scale
 	E.waitToMove = 10

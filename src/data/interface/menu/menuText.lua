@@ -6,7 +6,7 @@ MenuText = {}
 MenuText.__index = MenuText
 
 function MenuText:new(text, pos)
-	-- cria um texto na posicao "pos"
+	-- create a label in position "pos"
 	local T = {}
 	setmetatable(T, MenuText)
 	
@@ -30,7 +30,7 @@ function MenuText:new(text, pos)
 end
 
 function MenuText:selection()
-	-- faz a animacao de selecionar esta opcao
+	-- make the animation of selecting this a option
 	if self.selectable then
 		self.text:seekColor(1, 0, 0, 1, MOAIEaseType.EASE_IN)
 	end

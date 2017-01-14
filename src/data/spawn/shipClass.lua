@@ -2,9 +2,9 @@ ShipClass = {}
 ShipClass.__index = ShipClass
 
 function ShipClass:new(class, limit, range)
-	--cria um contador para quantas naves do tipo "class" ha no jogo
-	--"limit" eh o limite dessa nave que pode haver
-	--"range" eh a area (retangulo) que a nave surge
+	-- create a counter for how much ship of type "class" area in the game
+	-- "limit" is the limit of ships of type "class"
+	-- "range" is the area (rectangle) that the ship spawn
 	
 	local S = {}
 	setmetatable(S, ShipClass)
@@ -19,7 +19,7 @@ function ShipClass:new(class, limit, range)
 end
 
 function ShipClass:spawn(pos)
-	--cria uma nave desse tipo, na posicao "pos"
+	-- create a ship of this type, in position "pos"
 	newEnemy(self.class, pos)
 	
 	self.qty = self.qty + 1

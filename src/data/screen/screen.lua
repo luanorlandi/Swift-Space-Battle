@@ -8,24 +8,24 @@ Screen.__index = Screen
 function Screen:new()
 	local S = {}
 	setmetatable(S, Screen)
-	
-	-- tenta ler de um arquivo qual sera o tamanho da janela
+
+	-- try to read from a file
 	local resolution = readResolutionFile()
 	S.width = resolution.x
 	S.height = resolution.y
 	
-	-- se houve algum erro, tenta pegar pelo SO
+	-- if was not possible, try to get from OS
 	if S.width == nil or S.width == 0 or S.height == nil or S.height == 0 then
 		S.width, S.height = MOAIGfxDevice.getViewSize()
 		
-		-- se ainda houver erro, cria a janela com tamanho padrao
+		-- if was not possible, create a window with default resolution
 		if S.width == nil or S.width == 0 or S.height == nil or S.height == 0 then
 			S.width = defaultWidth
 			S.height = defaultHeight
 		end
 	end
-	
-	-- ajusta a janela para ficar na proporcao ideal do jogo (de maneira que ainda fique dentro da tela)
+
+	-- adjust the window to be in proportion (still beaing inside the screen)
 	if S.height / S.width < ratio then
 		S.width = S.height / ratio
 	else
@@ -33,12 +33,13 @@ function Screen:new()
 	end
 	
 	S.scale = S.height / 1280
-	print(S.height, S.width)
+	
 	return S
 end
 
-function Screen:newWindow()
+function Screen:newWindow()	
 	MOAISim.openWindow("Swift Space Battle", self.width, self.height)
+
 	MOAIEnvironment.setListener(MOAIEnvironment.EVENT_VALUE_CHANGED, onEventValueChanged)
 	
 	viewport = MOAIViewport.new()
@@ -85,8 +86,9 @@ function readListOfResolutionsFile()
 	local file = io.open("file/listOfResolutions.lua", "r")
 	
 	local resolutionsTable = {}
-	
-	local limit = 7 	-- limite de opcoes disponiveis, para nao ficar muito texto na janela e nao ter mais espaco
+
+	-- to avoid texts go out of the screen
+	local limit = 7 	-- limit of options available
 	
 	if file ~= nil then
 		repeat
@@ -105,7 +107,8 @@ function readListOfResolutionsFile()
 end
 
 function onEventValueChanged(key, value)
-	-- funcao callback, se o tamanho da janela mudar, ela eh chamada
+	-- callback function
+	-- if the window size changed, it will be called
 
 	if key == "horizontalResolution" then
 		screen.width = value

@@ -4,8 +4,8 @@ Rectangle = {}
 Rectangle.__index = Rectangle
 
 function Rectangle:new(c, v)
-	-- cria um retangulo no centro "c", com metade da diagonal do tamanho do vetor "v"
-	-- v.x, v.y eh um canto do retangulo e -v.x, -v.y eh o seu canto oposto
+	-- create a rectangle with center 'c', with half the diagonal of vector 'v' size
+	-- v.x, v.y area corners and -v.x, -v.y are the opposite corners
 	
 	local R = {}
 	setmetatable(R, Rectangle)
@@ -48,7 +48,7 @@ function Rectangle:intersection(b)
 end
 
 function Rectangle:pointInside(p)
-	-- verifica se ha o ponto "p" dentro do retangulo
+	-- check if point p is inside the rectangle
 	
 	local PA = Vector:new(self.center.x + self.size.x, self.center.y + self.size.y)
 	local PB = Vector:new(self.center.x - self.size.x, self.center.y - self.size.y)

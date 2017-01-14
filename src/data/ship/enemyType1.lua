@@ -53,7 +53,7 @@ function EnemyType1:new(pos)
 	coroutine.resume(spawnThread)
 	table.insert(E.threads, spawnThread)
 	
-	-- atributos do EnemyType1
+	-- EnemyType1 attributes
 	E.moveRange = 100 * screen.scale
 	E.shotRange = (2 / 3) * E.moveRange
 	
@@ -87,8 +87,8 @@ function EnemyType1:shoot()
 	if player.spawned then
 		local prob = math.random(1, 100)
 
-		if prob <= 5 then	-- probabilidade de 5% de atirar
-			-- a nave deve estar proxima do jogador
+		if prob <= 5 then	-- 5% shoot probability
+			-- ship must be close to the player
 			if self.pos.x > player.pos.x - self.shotRange and self.pos.x < player.pos.x + self.shotRange then
 				Ship.shoot(self, enemiesShots)
 			end

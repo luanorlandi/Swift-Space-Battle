@@ -1,5 +1,5 @@
 function getTime()
-	-- pega o tempo que se passou desde que o aplicativo iniciou
+	-- get the time elapsed since the start of the app
 	
 	while true do
 		gameTime = MOAISim.getElapsedTime()
@@ -8,9 +8,9 @@ function getTime()
 end
 
 function resumeThreads()
-	-- resume as thread importantes para o jogo
+	-- resume important threads of the game
 	
-	-- jogador
+	-- player
 	local i = 1
 	while i <= table.getn(player.threads) do
 		coroutine.resume(player.threads[i])
@@ -20,7 +20,8 @@ function resumeThreads()
 			table.remove(player.threads, i)
 		end
 	end
-	-- elimina a memoria alocada para gravar onde os sprites criados pelas threads da nave
+
+	-- free allocated memory
 	i = 1
 	while i <= table.getn(player.threadsSprites) do
 		if player.threadsSprites[i] == nil then
@@ -30,7 +31,7 @@ function resumeThreads()
 		end
 	end
 	
-	-- inimigos
+	-- enemies
 	for i = 1, table.getn(enemies), 1 do
 		local j = 1
 		while j <= table.getn(enemies[i].threads) do
@@ -52,7 +53,7 @@ function resumeThreads()
 		end
 	end
 	
-	-- inimigos mortos
+	-- dead enemies
 	for i = 1, table.getn(deadShips), 1 do
 		local j = 1
 		while j <= table.getn(deadShips[i].threads) do
@@ -85,7 +86,7 @@ function resumeThreads()
 		end
 	end
 	
-	-- nivel no jogo
+	-- game level
 	if coroutine.status(playerLevel.threadCheckLevel) ~= "dead" then
 		coroutine.resume(playerLevel.threadCheckLevel)
 	end

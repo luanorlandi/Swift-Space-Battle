@@ -57,7 +57,7 @@ function EnemyType5:new(pos)
 	coroutine.resume(spawnThread)
 	table.insert(E.threads, spawnThread)
 	
-	-- atributos do EnemyType5
+	-- EnemyType5 attributes
 	E.startPos = Vector:new(pos.x, pos.y)
 	E.verticalSizeRange = (screen.width / 2) / 14
 	E.moveRange = Vector:new((screen.width / 2 - E.area.size.size.x) * 0.75, E.verticalSizeRange)

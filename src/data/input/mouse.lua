@@ -4,7 +4,7 @@ local retDown = Rectangle:new(Vector:new(screen.width/2, 1.55 * screen.height/2)
 local retLeft = Rectangle:new (Vector:new(screen.width/4, screen.height/2),      Vector:new(screen.width/4, 0.10 * screen.height/2))
 local retRight = Rectangle:new(Vector:new(3 * screen.width/4, screen.height/2),  Vector:new(screen.width/4, 0.10 * screen.height/2))
 
--- esta funcao indica a posicao do cursor
+-- point out the cursor position
 function onPointerEvent(x, y)
 	input.pointerPos.x = x
 	input.pointerPos.y = y

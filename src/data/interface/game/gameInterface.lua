@@ -18,7 +18,7 @@ function GameInterface:new(lives)
 	
 	G.lives = Lives:new(lives)
 	
-	-- configura para o score aparacer no canto
+	-- configure score to be in the top right corner
 	G.score = Score:new(0, Vector:new(0, 0))
 	G.score.scoreText.text:setRect(-screen.width/2, -screen.height/2,
 						screen.width/2 - 0.1 * screen.width/2,

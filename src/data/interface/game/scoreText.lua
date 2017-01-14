@@ -28,7 +28,7 @@ function Score:setCombo(combo)
 end
 
 function showScoreAnim(score, pos)
-	-- faz uma animacao do score realizado
+	-- animate the score
 	local scoreProp = Score:new(score, pos)
 	scoreProp.scoreText.text:setTextSize(math.floor(0.8 * scoreFontSize))
 	
@@ -38,7 +38,7 @@ function showScoreAnim(score, pos)
 	
 	local over = false
 	
-	-- thread para o texto desaparecer aos poucos
+	-- therad to remove label with effect
 	local blendThread = coroutine.create(function() 
 		blendOut(scoreProp.scoreText.text, duration)
 	end)
@@ -57,7 +57,7 @@ function showScoreAnim(score, pos)
 end
 
 function showScoreEarnedAnim(score)
-	-- faz uma animacao do score recebido no canto
+	-- animate the score in the corner
 	local scoreProp = Score:new("+" .. score, interface.scoreEarnedPos)
 	scoreProp.scoreText.text:setTextSize(math.floor(0.8 * scoreFontSize))
 	
@@ -80,10 +80,10 @@ function showScoreEarnedAnim(score)
 		while gameTime - startTime < duration do
 			coroutine.yield()
 			
-			-- verifica o quanto ja foi concluido do movimento pelo tempo
+			-- check how much has been concluded of the movement by
 			local complete = (gameTime - startTime) / duration
 			
-			-- aplica o tanto concluido na posicao
+			-- apply that much in position
 			pos.x = (endPos.x - interface.scoreEarnedPos.x) * complete + interface.scoreEarnedPos.x
 			pos.y = (endPos.y - interface.scoreEarnedPos.y) * complete + interface.scoreEarnedPos.y
 			

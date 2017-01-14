@@ -22,7 +22,7 @@ end
 function Area:detectCollision(orientationA, posA, b, orientationB, posB)
 	-- self = area A
 	-- b = area B
-	-- orientation = se esta invertida
+	-- orientation = if it is inverted
 
 	local sizeA = self.size:copy(orientationA, posA)
 	local sizeB = b.size:copy(orientationB, posB)

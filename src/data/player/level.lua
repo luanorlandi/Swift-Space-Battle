@@ -10,7 +10,7 @@ function Level:new(spawner)
 	L.current = 1
 	L.max = 20
 	
-	-- duracao que fica em cada level
+	-- duration in each level
 	L.duration = 45
 	
 	L.lastLevelUp = gameTime

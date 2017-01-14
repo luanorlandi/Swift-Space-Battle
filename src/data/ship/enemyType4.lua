@@ -56,11 +56,11 @@ function EnemyType4:new(pos)
 	coroutine.resume(spawnThread)
 	table.insert(E.threads, spawnThread)
 	
-	-- atributos do EnemyType4
+	-- EnemyType4 attributes
 	E.closeToTarget = 15 * screen.scale
 	E.shotRange = 40 * screen.scale
 	
-	-- habilidade de blink
+	-- blink ability
 	E.blinkCd = 3.5
 	E.blinkLast = E.spawnTime
 	E.blinkActive = false
@@ -106,7 +106,7 @@ function EnemyType4:muzzleflash()
 end
 
 function EnemyType4:checkBlink()
--- checa se a habilidade blink esta disponivel e deve ser ativada
+	-- check if blink ability is available and should be used
 	if self.blinkLast <= gameTime - self.blinkCd and not self.blinkActive and not self.spawning then
 		if self:shotClose() then
 			local blinkThread = coroutine.create(function()

@@ -18,13 +18,13 @@ function MenuInterface:new()
 	local M = {}
 	setmetatable(M, MenuInterface)
 	
-	-- desenho de fundo no menu
+	-- menu background art
 	M.background = Background:new()
 	
 	M.textTable = {}
 	M.textSize = textSize
-	M.textGap = 1.75 * M.textSize		-- espaço entre cada texto
-	M.textStart = 50 * screen.scale		-- posicao do primeiro texto
+	M.textGap = 1.75 * M.textSize		-- space between labels
+	M.textStart = 50 * screen.scale		-- first text position
 	
 	M.title = Title:new(Vector:new(0, M.textStart + 220 * screen.scale))
 	
@@ -34,7 +34,7 @@ function MenuInterface:new()
 end
 
 function MenuInterface:createMenu(menuTable, start)
-	-- recebe uma tabela com as strings de nomes do textos no menu
+	-- receive a table with strings of names and texts in menu
 	self:cleanMenu()
 	
 	self.textTable = {}
@@ -52,7 +52,7 @@ function MenuInterface:createMenu(menuTable, start)
 end
 
 function MenuInterface:showHowToPlay()
-	-- mostra a imagem dos controles da nave
+	-- show image with the controls of the ship
 
 	self.howToPlaySprite = MOAIProp2D.new()
 	changePriority(self.howToPlaySprite, "interface")

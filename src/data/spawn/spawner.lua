@@ -5,7 +5,7 @@ Spawner = {}
 Spawner.__index = Spawner
 
 function Spawner:new()
-	--cria um gerador de naves, que controla o numero de naves no jogo
+	-- create a generator of ships, controls the number of ships in the game
 	local S = {}
 	setmetatable(S, Spawner)
 	
@@ -13,7 +13,7 @@ function Spawner:new()
 	S.normalRate = 3
 	S.fastRate = S.rate * (3/4)
 	S.veryFastRate = S.rate * (2/4)
-	S.last = gameTime + 2				-- 2 segundos iniciais sem aparecer inimigos
+	S.last = gameTime + 2				-- add a delay to start spawn
 	
 	S.areaAll, S.areaBack, S.areaCenter = spawnAreas()
 	
@@ -21,7 +21,7 @@ function Spawner:new()
 	S.limit = 0
 	S.totalUp = 0
 	S.totalDown = 0
-	S.maxSide = 0			-- limite de diferenca para naves do mesmo lado
+	S.maxSide = 0			-- difference limit of ships in the same side
 	
 	S.shipsClass = {}
 	
@@ -31,10 +31,11 @@ function Spawner:new()
 end
 
 function Spawner:spawn()
-	-- verifica se ha naves para serem criadas
+	-- check if there are ships to be created
+
 	if gameTime - self.last > self.rate and self.total < self.limit then
-		-- define qual lado deve criar a nave, se os dois forem validos, seleciona um deles aleatoriamente]
-		-- lado para cima, -1 = para baixo
+		-- define which side to create the ship, if both are valid, select a random
+		-- 1 for top, -1 for bottom
 		local side = math.random(1, 2)
 		if side == 2 then side = -1 end
 		
@@ -54,14 +55,14 @@ function Spawner:spawn()
 		
 		self.total = self.total + 1
 		
-		-- define qual nave sera criada
-		local rand = math.random(1, table.getn(self.shipsAvailables))	-- sorteia uma nave disponivel para criar
+		-- define which ship will be created
+		local rand = math.random(1, table.getn(self.shipsAvailables))
+		local ship = self.shipsAvailables[rand]	-- get ship class
 		
-		local ship = self.shipsAvailables[rand]	-- pega a classe da nave selecionada para criar
-		
-		-- define onde a nave sera criada
+		-- define where the ship will be created
 		local pos = randomPosition(side, self.shipsClass[ship].range)
-		-- cria a nave e remove ela do vetor de naves disponiveis
+		
+		-- create the ship and remove it from the available ships
 		self.shipsClass[ship]:spawn(pos)
 		table.remove(self.shipsAvailables, rand)
 		
@@ -72,7 +73,7 @@ function Spawner:spawn()
 end
 
 function Spawner:decrease(class, side)
-	--diminui a quantidade de naves da classe "class", do lado "side"
+	-- decrease amount of ships of class "class" on side "side"
 	self.total = self.total - 1
 	
 	if side > 0 then
@@ -121,7 +122,7 @@ function spawnAreas()
 end
 
 function randomPosition(side, range)
-	--retorna uma posicao aleatoria que esta dentro da area "range", no lado "side"
+	-- return a random position inside the area "range" on side side "side"
 	local pos = Vector:new(0, 0)
 	
 	pos.x = math.random(range.center.x - range.size.x, range.center.x + range.size.x)
@@ -144,7 +145,7 @@ function Spawner:changeRate()
 end
 
 function Spawner:levelUp()
-	-- essa funcao avanca de nivel cada vez que for resumida
+	-- advance a level each time is resumed
 	
 	-- level 1
 	self.normalRate = 3

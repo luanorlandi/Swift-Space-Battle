@@ -37,8 +37,8 @@ function Lives:decrease()
 end
 
 function iconLifePos(n)
-	-- acha a posicao "n" que o icone deve ser colocado
-	local d = (screen.width / 2) / 5		-- distancia entre cada icone
+	-- fin position 'n' that the icon will stay
+	local d = (screen.width / 2) / 5		-- distance between icons
 	
 	return (screen.width / 2) - (n * d), -(screen.height / 2) + d
 end

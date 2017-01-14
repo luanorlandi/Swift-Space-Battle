@@ -19,6 +19,7 @@ end
 
 function MenuData:checkSelection()
 	-- coloca a origem do cursor como sendo o centro da janela
+	-- put the cursor origin as the window center
 	local cursorPos = Vector:new(input.pointerPos.x - screen.width / 2, -(input.pointerPos.y - screen.height / 2))
 	
 	local selection = false
@@ -50,36 +51,37 @@ function MenuData:checkSelection()
 end
 
 function MenuData:checkPressed()
-	-- checa se houve o click
+	-- check if any click/tap happened
 	if input.pointerPressed then
 		input.pointerPressed = false
 		
 		-- checa se tem algo selecionado
+		-- check if there is something selected
 		if self.textBoxSelected ~= 0 then
-			-- realiza a funcao do menu selecionado
+			-- make the menu function selected
 			self.menuFunction[self.textBoxSelected](self)
 		end
 	end
 end
 
 function MenuData:createMainMenu()
-	-- limpa o menu anterior (se houver)
+	-- clear previous menu, if any
 	self:cleanMenu()
 	
-	texts = {}		-- contem as strings que parecem no menu
+	texts = {}		-- has the menu strings
 	table.insert(texts, "Novo Jogo")
 	table.insert(texts, "Como Jogar")
 	table.insert(texts, "Maior Pontuação")
 	table.insert(texts, "Opções")
 	table.insert(texts, "Sair")
 	
-	-- cria um novo menu
+	-- create a new menu
 	interface:createMenu(texts)
 	
-	-- cria as caixas de texto para selecionar
+	-- create the label boxes to allow selection
 	self:createBoxesMenu(5)
 	
-	-- define o que cada item do menu vai fazer
+	-- define what each menu item will do
 	table.insert(self.menuFunction, function() self:newGame() end)
 	table.insert(self.menuFunction, function() self:createHowToPlayMenu() end)
 	table.insert(self.menuFunction, function() self:createScoreMenu() end)
@@ -131,7 +133,7 @@ end
 function MenuData:createResolutionsMenu()
 	self:cleanMenu()
 	
-	-- tabela contendo todos os textos que apareceram no menu
+	-- table with all label that appears in the menu
 	local resolutionsTexts = {}
 	
 	for i = 1, table.getn(self.resolutionsAvailable), 1 do
@@ -148,7 +150,7 @@ function MenuData:createResolutionsMenu()
 		table.insert(resolutionsTexts, width .. "x" .. height)
 	end
 	
-	-- inclui no final a opcao de voltar
+	-- include the return button at the end
 	table.insert(self.menuFunction, function() self:createOptionsMenu() end)
 	table.insert(resolutionsTexts, "Voltar")
 	
@@ -177,7 +179,7 @@ function MenuData:createHowToPlayMenu()
 end
 
 function MenuData:createBoxesMenu(n)
-	-- cria "n" caixas de texto para selecionar
+	-- create 'n' label boxes to selection
 	
 	for i = 1, n, 1 do
 		local center = Vector:new(0, interface.textStart - (i - 1) * interface.textGap)
@@ -189,7 +191,8 @@ function MenuData:createBoxesMenu(n)
 end
 
 function MenuData:createBoxesMenuCustomStart(start, n)
-	-- cria "n" caixas de texto para selecionar
+	-- create 'n' label boxes to selection
+	-- starting at 'start'
 	
 	for i = 1, n, 1 do
 		local center = Vector:new(0, start - (i - 1) * interface.textGap)

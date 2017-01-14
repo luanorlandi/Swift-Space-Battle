@@ -49,7 +49,7 @@ function EnemyType2:new(pos)
 	coroutine.resume(spawnThread)
 	table.insert(E.threads, spawnThread)
 	
-	-- atributos do EnemyType2
+	-- EnemyType2 attributes
 	E.moveRange = (screen.width / 2 - E.area.size.size.x) * 0.95
 	
 	return E
@@ -70,7 +70,7 @@ end
 function EnemyType2:shoot()
 	local prob = math.random(1, 100)
 		
-	if prob <= 1 then	-- probabilidade de 1% de atirar
+	if prob <= 1 then	-- 1% shoot probability
 		Ship.shoot(self, enemiesShots)
 	end
 end
