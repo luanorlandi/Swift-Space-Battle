@@ -1,0 +1,50 @@
+
+#----------------------------------------------------------------#
+# list of source lua directories to add to the 
+# application bundle. These are relative to your project src
+#----------------------------------------------------------------#
+
+package: com.getmoai.samples
+
+src_dir: .
+
+debug: true
+
+key_store:
+key_alias:
+key_store_password:
+key_alias_password:
+
+project_name: Swift Space Battle
+app_id: 0
+
+screen_orientation: portrait
+
+version_code: 100
+version_name: 1.1.0
+
+working_dir: lua
+asset_dirs: []
+
+extensions:
+     miscellaneous: no
+     adcolony: no
+     billing: no
+     chartboost: no
+     crittercism: no
+     facebook: no
+     push: no
+     tapjoy: no
+     twitter: no
+     tstorewall: no
+     tstoregamecenter: no
+     playservices: no
+
+icon:
+    ldpi:
+    mdpi:
+    hdpi:
+    xhdpi:
+
+run: 
+    - main.lua
