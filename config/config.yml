@@ -1,8 +1,8 @@
-name: aaaa
-full_name: aaaa
-author: Unknown
+name: Swift Space Battle
+full_name: Swift Space Battle
+author: Luan Orlandi
 version_code: 100
-version_name: 1.0
+version_name: 1.1.0
 sdk:
   repository: https://github.com/moai/moai-dev.git
   ref: "1.5-stable"
@@ -30,14 +30,14 @@ modules:
   LUAJIT: true
 
 extensions:
-     miscellaneous: yes
+     miscellaneous: no
      adcolony: no
-     billing: yes
-     chartboost: yes
-     crittercism: yes
-     facebook: yes
-     push: yes
-     tapjoy: yes
-     twitter: yes
-     tstorewall: yes
-     tstoregamecenter: yes
+     billing: no
+     chartboost: no
+     crittercism: no
+     facebook: no
+     push: no
+     tapjoy: no
+     twitter: no
+     tstorewall: no
+     tstoregamecenter: no
