@@ -1,6 +1,6 @@
-require "data/interface/menu/background"
-require "data/interface/menu/menuText"
-require "data/interface/menu/title"
+require "interface/menu/background"
+require "interface/menu/menuText"
+require "interface/menu/title"
 
 local textSize = math.floor(45 * screen.scale)
 local menuFont = MOAIFont.new()

@@ -1,4 +1,4 @@
-require "data/effect/blend"
+require "effect/blend"
 
 local scoreFontSize = math.floor(40 * screen.scale)
 local scoreFont = MOAIFont.new()

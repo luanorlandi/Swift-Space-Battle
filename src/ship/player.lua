@@ -1,4 +1,4 @@
-require "data/effect/spawnblink"
+require "effect/spawnblink"
 
 local deckSize = Vector:new(60 * screen.scale, 60 * screen.scale)
 local deck = MOAIGfxQuad2D.new()

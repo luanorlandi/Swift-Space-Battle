@@ -1,4 +1,4 @@
-require "data/effect/blend"
+require "effect/blend"
 
 local background = MOAIGfxQuad2D.new()
 background:setTexture("texture/effect/blackscreen.png")

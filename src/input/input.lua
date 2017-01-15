@@ -1,6 +1,6 @@
-require "data/input/keyboard"
-require "data/input/mouse"
-require "data/input/touch"
+require "input/keyboard"
+require "input/mouse"
+require "input/touch"
 
 Input = {}
 Input.__index = Input

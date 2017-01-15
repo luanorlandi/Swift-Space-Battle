@@ -1,13 +1,13 @@
-require "data/loop/thread"
-require "data/scenario/stage1"
-require "data/ship/ship"
-require "data/shot/shot"
-require "data/math/vector"
-require "data/spawn/spawner"
-require "data/player/data"
-require "data/player/level"
-require "data/interface/game/gameInterface"
-require "data/effect/blackscreen"
+require "loop/thread"
+require "scenario/stage1"
+require "ship/ship"
+require "shot/shot"
+require "math/vector"
+require "spawn/spawner"
+require "player/data"
+require "player/level"
+require "interface/game/gameInterface"
+require "effect/blackscreen"
 
 function gameLoop()
 	local blackscreen = BlackScreen:new(3)

@@ -1,4 +1,4 @@
-require "data/scenario/scenario"
+require "scenario/scenario"
 
 local littleStarsDeck = MOAIGfxQuad2D.new()
 littleStarsDeck:setTexture("texture/scenario/littleStars.png")

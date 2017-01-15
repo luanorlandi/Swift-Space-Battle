@@ -1,8 +1,8 @@
-require "data/interface/game/gameText"
-require "data/interface/game/lives"
-require "data/interface/game/borderHp"
-require "data/interface/game/scoreText"
-require "data/interface/game/gameOver"
+require "interface/game/gameText"
+require "interface/game/lives"
+require "interface/game/borderHp"
+require "interface/game/scoreText"
+require "interface/game/gameOver"
 
 GameInterface = {}
 GameInterface.__index = GameInterface

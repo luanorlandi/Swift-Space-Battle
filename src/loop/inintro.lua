@@ -1,4 +1,4 @@
-require "data/interface/intro/introInterface"
+require "interface/intro/introInterface"
 
 function introLoop()
 	intro = Intro:new()

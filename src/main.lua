@@ -7,21 +7,24 @@ For more information, access https://github.com/luanorlandi/Swift-Space-Battle
 --------------------------------------------------------------------------------
 ]]
 
+local testfile = os.getenv("INTERNAL_STORAGE")
+print(testfile)
+
 MOAILogMgr.setLogLevel(MOAILogMgr.LOG_NONE)
 
-require "data/math/area"
-require "data/math/util"
-require "data/screen/screen"
+require "math/area"
+require "math/util"
+require "screen/screen"
 
 screen = Screen:new()
 layer = screen:newWindow()
 
-require "data/interface/priority"
-require "data/loop/ingame"
-require "data/loop/inmenu"
-require "data/loop/inintro"
+require "interface/priority"
+require "loop/ingame"
+require "loop/inmenu"
+require "loop/inintro"
 
-require "data/input/input"
+require "input/input"
 
 input = Input:new()
 

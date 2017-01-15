@@ -1,4 +1,4 @@
-require "data/math/vector"
+require "math/vector"
 
 Rectangle = {}
 Rectangle.__index = Rectangle

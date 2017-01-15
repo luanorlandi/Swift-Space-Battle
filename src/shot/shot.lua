@@ -1,9 +1,9 @@
-require "data/shot/shotLaserBlue"
-require "data/shot/shotLaserRed"
-require "data/shot/shotLaserGreen"
-require "data/shot/shotLaserCyan"
-require "data/shot/shotLaserMagenta"
-require "data/shot/shotStar"
+require "shot/shotLaserBlue"
+require "shot/shotLaserRed"
+require "shot/shotLaserGreen"
+require "shot/shotLaserCyan"
+require "shot/shotLaserMagenta"
+require "shot/shotStar"
 
 Shot = {}
 Shot.__index = Shot

@@ -1,4 +1,4 @@
-require "data/effect/blend"
+require "effect/blend"
 
 local deckLua = MOAIGfxQuad2D.new()
 deckLua:setTexture("texture/logo/lua.png")

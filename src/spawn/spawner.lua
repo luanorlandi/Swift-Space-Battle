@@ -1,5 +1,5 @@
-require "data/ship/ship"
-require "data/spawn/shipClass"
+require "ship/ship"
+require "spawn/shipClass"
 
 Spawner = {}
 Spawner.__index = Spawner

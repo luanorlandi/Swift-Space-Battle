@@ -1,14 +1,14 @@
-require "data/shot/shot"
-require "data/effect/blend"
-require "data/effect/explosion"
+require "shot/shot"
+require "effect/blend"
+require "effect/explosion"
 
-require "data/ship/player"
-require "data/ship/enemies"
-require "data/ship/enemyType1"
-require "data/ship/enemyType2"
-require "data/ship/enemyType3"
-require "data/ship/enemyType4"
-require "data/ship/enemyType5"
+require "ship/player"
+require "ship/enemies"
+require "ship/enemyType1"
+require "ship/enemyType2"
+require "ship/enemyType3"
+require "ship/enemyType4"
+require "ship/enemyType5"
 
 local muzzleflashSize = Vector:new(10 * screen.scale, 10 * screen.scale)
 

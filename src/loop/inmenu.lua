@@ -1,5 +1,5 @@
-require "data/interface/menu/menuInterface"
-require "data/menu/data"
+require "interface/menu/menuInterface"
+require "menu/data"
 
 function menuLoop()
 	interface = MenuInterface:new()

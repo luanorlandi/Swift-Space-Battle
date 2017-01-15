@@ -1,5 +1,5 @@
-require "data/math/vector"
-require "data/math/rectangle"
+require "math/vector"
+require "math/rectangle"
 
 Area = {}
 Area.__index = Area
