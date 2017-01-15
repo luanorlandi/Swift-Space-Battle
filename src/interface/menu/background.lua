@@ -1,6 +1,6 @@
 local deck = MOAIGfxQuad2D.new()
 deck:setTexture("texture/background/menuBackground.png")
-deck:setRect(-screen.width/2, -screen.height/2, screen.width/2, screen.height/2)
+deck:setRect(-window.width/2, -window.height/2, window.width/2, window.height/2)
 
 Background = {}
 Background.__index = Background
@@ -19,6 +19,6 @@ function Background:new()
 	return B
 end
 
-function Background:clean()
+function Background:clear()
 	layer:removeProp(self.sprite)
 end

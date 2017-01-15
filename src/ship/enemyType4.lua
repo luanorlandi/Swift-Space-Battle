@@ -1,4 +1,4 @@
-local deckSize = Vector:new(50 * screen.scale, 50 * screen.scale)
+local deckSize = Vector:new(50 * window.scale, 50 * window.scale)
 
 local deck = MOAIGfxQuad2D.new()
 deck:setTexture("texture/ship/ship8.png")
@@ -29,9 +29,9 @@ function EnemyType4:new(pos)
 	E.hp = 20
 	E.maxHp = 20
 
-	E.maxAcc = 0.15 * screen.scale
+	E.maxAcc = 0.15 * window.scale
 	E.dec = E.maxAcc / 3
-	E.maxSpd = 1.2 * screen.scale
+	E.maxSpd = 1.2 * window.scale
 	E.minSpd = E.maxAcc / 5
 	E.area.size = Rectangle:new(Vector:new(0, 0), deckSize)
 	E.area:newRectangularArea(Vector:new(0, 0.3 * deckSize.y), Vector:new(0.75 * deckSize.x, 0.2 * deckSize.y))
@@ -40,7 +40,7 @@ function EnemyType4:new(pos)
 	E.area:newRectangularArea(Vector:new(0.9 * deckSize.x, 0.25 * deckSize.y), Vector:new(0.1 * deckSize.x, 0.65 * deckSize.y))
 	
 	E.shotType = ShotLaserMagenta
-	E.shotSpd = 7 * screen.scale
+	E.shotSpd = 7 * window.scale
 	E.fireRate = 0.3
 	
 	table.insert(E.wpn, Vector:new(0, 0.80 * E.area.size.size.y))
@@ -57,15 +57,15 @@ function EnemyType4:new(pos)
 	table.insert(E.threads, spawnThread)
 	
 	-- EnemyType4 attributes
-	E.closeToTarget = 15 * screen.scale
-	E.shotRange = 40 * screen.scale
+	E.closeToTarget = 15 * window.scale
+	E.shotRange = 40 * window.scale
 	
 	-- blink ability
 	E.blinkCd = 3.5
 	E.blinkLast = E.spawnTime
 	E.blinkActive = false
 	E.blinkDuration = 1
-	E.blinkShotClose = 200 * screen.scale
+	E.blinkShotClose = 200 * window.scale
 	
 	return E
 end

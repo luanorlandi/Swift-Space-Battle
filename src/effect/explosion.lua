@@ -1,5 +1,5 @@
-local expType1Size = Vector:new(150 * screen.scale, 150 * screen.scale)
-local expType2Size = Vector:new(250 * screen.scale, 250 * screen.scale)
+local expType1Size = Vector:new(150 * window.scale, 150 * window.scale)
+local expType2Size = Vector:new(250 * window.scale, 250 * window.scale)
 
 expType1 = MOAITileDeck2D:new()
 expType1:setTexture("texture/effect/expType1.png")

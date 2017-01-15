@@ -10,7 +10,7 @@ require "ship/enemyType3"
 require "ship/enemyType4"
 require "ship/enemyType5"
 
-local muzzleflashSize = Vector:new(10 * screen.scale, 10 * screen.scale)
+local muzzleflashSize = Vector:new(10 * window.scale, 10 * window.scale)
 
 local muzzleflash = MOAIGfxQuad2D.new()
 muzzleflash:setTexture("texture/effect/muzzleflash.png")
@@ -45,14 +45,14 @@ function Ship:new(deck, pos)
 	S.pos = pos
 	S.spd = Vector:new(0, 0)
 	S.acc = Vector:new(0, 0)
-	S.maxAcc = 0.1 * screen.scale
+	S.maxAcc = 0.1 * window.scale
 	S.dec = S.maxAcc / 3
-	S.maxSpd = 2 * screen.scale
+	S.maxSpd = 2 * window.scale
 	S.minSpd = S.maxAcc / 5
 	S.area = Area:new(Vector:new(0, 0))
 	
 	S.shotType = ShotLaserBlue
-	S.shotSpd = 8 * screen.scale
+	S.shotSpd = 8 * window.scale
 	S.fireLast = gameTime
 	S.fireRate = 0.4
 	
@@ -118,17 +118,17 @@ function Ship:move()
 	-- define position
 	self.pos:sum(self.spd)
 	
-	-- check if exceed the screen size
+	-- check if exceed the window size
 	Ship.moveLimit(self)
 	
 	self.sprite:setLoc(self.pos.x, self.pos.y)
 end
 
 function Ship:moveLimit()
-	if self.pos.x > screen.width/2 + self.area.size.size.x then
-		self.pos.x = -screen.width/2 - self.area.size.size.x
-	else if self.pos.x < -screen.width/2 - self.area.size.size.x then
-			self.pos.x = screen.width/2 + self.area.size.size.x
+	if self.pos.x > window.width/2 + self.area.size.size.x then
+		self.pos.x = -window.width/2 - self.area.size.size.x
+	else if self.pos.x < -window.width/2 - self.area.size.size.x then
+			self.pos.x = window.width/2 + self.area.size.size.x
 		end
 	end
 end
@@ -157,10 +157,10 @@ function Ship:newShot(shots, pos)
 end
 
 function Ship:moveLimit()
-	if self.pos.x > screen.width/2 + self.area.size.size.x then
-		self.pos.x = -screen.width/2 - self.area.size.size.x
-	else if self.pos.x < -screen.width/2 - self.area.size.size.x then
-			self.pos.x = screen.width/2 + self.area.size.size.x
+	if self.pos.x > window.width/2 + self.area.size.size.x then
+		self.pos.x = -window.width/2 - self.area.size.size.x
+	else if self.pos.x < -window.width/2 - self.area.size.size.x then
+			self.pos.x = window.width/2 + self.area.size.size.x
 		end
 	end
 end
@@ -367,7 +367,7 @@ function shipsCheckStatus()
 	end
 end
 
-function shipsClean()
+function shipsClear()
 	Ship.destroy(player)
 	
 	for i = 1, table.getn(enemies), 1 do

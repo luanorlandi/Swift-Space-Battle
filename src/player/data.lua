@@ -56,7 +56,7 @@ end
 function PlayerData:newGame()
 	self.active = false
 	
-	self:clean()
+	self:clear()
 	
 	local gameThread = MOAICoroutine.new()
 	gameThread:run(gameLoop)
@@ -65,7 +65,7 @@ end
 function PlayerData:backToMenu()
 	self.active = false
 	
-	self:clean()
+	self:clear()
 	
 	local menuThread = MOAICoroutine.new()
 	menuThread:run(menuLoop)
@@ -99,11 +99,11 @@ function PlayerData:breakCombo()
 	interface.combo.scoreText.text:setVisible(false)
 end
 
-function PlayerData:clean()
-	interface:clean()
-	shotsClean()
-	shipsClean()
-	map:clean()
+function PlayerData:clear()
+	interface:clear()
+	shotsClear()
+	shipsClear()
+	map:clear()
 end
 
 function locateSaveLocation()

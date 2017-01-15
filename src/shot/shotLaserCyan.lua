@@ -1,4 +1,4 @@
-local laserSize = Vector:new(5 * screen.scale, 30 * screen.scale)
+local laserSize = Vector:new(5 * window.scale, 30 * window.scale)
 
 local laserDeck = MOAIGfxQuad2D.new()
 laserDeck:setTexture("texture/shot/lasercyan.png")

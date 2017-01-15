@@ -1,4 +1,4 @@
-local deckSize = Vector:new(50 * screen.scale, 50 * screen.scale)
+local deckSize = Vector:new(50 * window.scale, 50 * window.scale)
 
 local deck = MOAIGfxQuad2D.new()
 deck:setTexture("texture/ship/ship10.png")
@@ -29,9 +29,9 @@ function EnemyType5:new(pos)
 	E.hp = 40
 	E.maxHp = 40
 	
-	E.maxAcc = 0.06 * screen.scale
+	E.maxAcc = 0.06 * window.scale
 	E.dec = E.maxAcc / 3
-	E.maxSpd = 2.2 * screen.scale
+	E.maxSpd = 2.2 * window.scale
 	E.minSpd = E.maxAcc / 5
 	E.area.size = Rectangle:new(Vector:new(0, 0), deckSize)
 	E.area:newRectangularArea(Vector:new(0, -0.5 * deckSize.y), Vector:new(0.8 * deckSize.x, 0.3 * deckSize.y))
@@ -43,7 +43,7 @@ function EnemyType5:new(pos)
 	E.area:newRectangularArea(Vector:new(0.6 * deckSize.x, -0.6 * deckSize.y), Vector:new(0.2 * deckSize.x, 0.2 * deckSize.y))
 	
 	E.shotType = ShotStar
-	E.shotSpd = 5 * screen.scale
+	E.shotSpd = 5 * window.scale
 	E.fireRate = 2
 	
 	table.insert(E.wpn, Vector:new(0, 0.8 * E.area.size.size.y))
@@ -59,8 +59,8 @@ function EnemyType5:new(pos)
 	
 	-- EnemyType5 attributes
 	E.startPos = Vector:new(pos.x, pos.y)
-	E.verticalSizeRange = (screen.width / 2) / 14
-	E.moveRange = Vector:new((screen.width / 2 - E.area.size.size.x) * 0.75, E.verticalSizeRange)
+	E.verticalSizeRange = (window.width / 2) / 14
+	E.moveRange = Vector:new((window.width / 2 - E.area.size.size.x) * 0.75, E.verticalSizeRange)
 	
 	E.acc.x = E.maxAcc
 	E.acc.y = E.maxAcc

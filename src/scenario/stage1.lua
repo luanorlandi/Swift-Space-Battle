@@ -2,11 +2,11 @@ require "scenario/scenario"
 
 local littleStarsDeck = MOAIGfxQuad2D.new()
 littleStarsDeck:setTexture("texture/scenario/littleStars.png")
-littleStarsDeck:setRect(-screen.width / 2, -screen.height / 2, screen.width / 2, screen.height / 2)
+littleStarsDeck:setRect(-window.width / 2, -window.height / 2, window.width / 2, window.height / 2)
 
 local bigStarsDeck = MOAIGfxQuad2D.new()
 bigStarsDeck:setTexture("texture/scenario/bigStars.png")
-bigStarsDeck:setRect(-screen.width / 2, -screen.height / 2, screen.width / 2, screen.height / 2)
+bigStarsDeck:setRect(-window.width / 2, -window.height / 2, window.width / 2, window.height / 2)
 
 Stage1 = {}
 Stage1.__index = Stage1
@@ -19,14 +19,14 @@ function Stage1:new()
 	
 	S.scenarios = {}
 	
-	local bigSpd = (-2) * screen.scale
+	local bigSpd = (-2) * window.scale
 	local smallSpd = bigSpd * 0.95
 	
 	local downSmaller = Scenario:new(littleStarsDeck, Vector:new(0, 0))
 	downSmaller.spd.y = smallSpd
 	table.insert(S.scenarios, downSmaller)
 	
-	local upSmaller = Scenario:new(littleStarsDeck, Vector:new(0, screen.height))
+	local upSmaller = Scenario:new(littleStarsDeck, Vector:new(0, window.height))
 	upSmaller.spd.y = smallSpd
 	table.insert(S.scenarios, upSmaller)
 	
@@ -34,7 +34,7 @@ function Stage1:new()
 	downBigger.spd.y = bigSpd
 	table.insert(S.scenarios, downBigger)
 	
-	local upBigger = Scenario:new(bigStarsDeck, Vector:new(0, screen.height))
+	local upBigger = Scenario:new(bigStarsDeck, Vector:new(0, window.height))
 	upBigger.spd.y = bigSpd
 	table.insert(S.scenarios, upBigger)
 	
@@ -47,9 +47,9 @@ function Stage1:move()
 	end
 end
 
-function Stage1:clean()
+function Stage1:clear()
 	for i = 1, table.getn(self.scenarios), 1 do
-		self.scenarios[1]:clean()
+		self.scenarios[1]:clear()
 		table.remove(self.scenarios, 1)
 	end
 end

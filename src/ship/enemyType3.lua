@@ -1,4 +1,4 @@
-local deckSize = Vector:new(50 * screen.scale, 50 * screen.scale)
+local deckSize = Vector:new(50 * window.scale, 50 * window.scale)
 
 local deck = MOAIGfxQuad2D.new()
 deck:setTexture("texture/ship/ship7.png")
@@ -29,9 +29,9 @@ function EnemyType3:new(pos)
 	E.hp = 40
 	E.maxHp = 40
 
-	E.maxAcc = 0.03 * screen.scale
+	E.maxAcc = 0.03 * window.scale
 	E.dec = E.maxAcc / 3
-	E.maxSpd = 1 * screen.scale
+	E.maxSpd = 1 * window.scale
 	E.minSpd = E.maxAcc / 5
 	E.area.size = Rectangle:new(Vector:new(0, 0), deckSize)
 	E.area:newRectangularArea(Vector:new(0.4 * deckSize.x, 0), Vector:new(0.2 * deckSize.x, 0.8 * deckSize.y))
@@ -39,7 +39,7 @@ function EnemyType3:new(pos)
 	E.area:newRectangularArea(Vector:new(0, -0.7 * deckSize.y), Vector:new(0.2 * deckSize.x, 0.3 * deckSize.y))
 	
 	E.shotType = ShotLaserCyan
-	E.shotSpd = 15 * screen.scale
+	E.shotSpd = 15 * window.scale
 	E.fireRate = 1.5
 	
 	table.insert(E.wpn, Vector:new(0, 0.3 * E.area.size.size.y))
@@ -58,8 +58,8 @@ function EnemyType3:new(pos)
 	table.insert(E.threads, spawnThread)
 	
 	-- EnemyType3 attributes
-	E.playerSize = 45 * screen.scale
-	E.shotRange = 40 * screen.scale
+	E.playerSize = 45 * window.scale
+	E.shotRange = 40 * window.scale
 	E.waitToMove = 10
 	
 	return E

@@ -85,10 +85,10 @@ function shotsCheckCollision(shots, ship)
 end
 
 function shotCheckDistant(shots, s)
-	if shots[s].pos.x > screen.width or
-		shots[s].pos.x < -screen.width or
-		shots[s].pos.y > screen.height or
-		shots[s].pos.y < -screen.height then
+	if shots[s].pos.x > window.width or
+		shots[s].pos.x < -window.width or
+		shots[s].pos.y > window.height or
+		shots[s].pos.y < -window.height then
 		
 		Shot.destroy(shots[s])
 		table.remove(shots, s)
@@ -99,7 +99,7 @@ function shotCheckDistant(shots, s)
 	return false
 end
 
-function shotsClean()
+function shotsClear()
 	for i = 1, table.getn(playerShots), 1 do
 		layer:removeProp(playerShots[1].sprite)
 		table.remove(playerShots, 1)

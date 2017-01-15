@@ -1,6 +1,6 @@
 local borderHpDeck = MOAIGfxQuad2D.new()
 borderHpDeck:setTexture("texture/effect/borderhp.png")
-borderHpDeck:setRect(-screen.width/2, -screen.height/2, screen.width/2, screen.height/2)
+borderHpDeck:setRect(-window.width/2, -window.height/2, window.width/2, window.height/2)
 
 BorderHp = {}
 BorderHp.__index = BorderHp
@@ -43,6 +43,6 @@ function BorderHp:showBorderHp()
 	end
 end
 
-function BorderHp:clean()
+function BorderHp:clear()
 	layer:removeProp(self.sprite)
 end

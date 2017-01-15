@@ -1,12 +1,12 @@
-local gameOverFontSize = math.floor(70 * screen.scale)
+local gameOverFontSize = math.floor(70 * window.scale)
 local gameOverFont = MOAIFont.new()
 gameOverFont:loadFromTTF("font//RosesareFF0000.ttf", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-", gameOverFontSize, 72)
 
-local textFontSize = math.floor(40 * screen.scale)
+local textFontSize = math.floor(40 * window.scale)
 local textFont = MOAIFont.new()
 textFont:loadFromTTF("font//RosesareFF0000.ttf", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-", textFontSize, 72)
 
-local gameOverTextSize = 70 * screen.scale
+local gameOverTextSize = 70 * window.scale
 
 GameOver = {}
 GameOver.__index = GameOver
@@ -17,7 +17,7 @@ function GameOver:new(score)
 	local G = {}
 	setmetatable(G, GameOver)
 	
-	G.gap = 80 * screen.scale
+	G.gap = 80 * window.scale
 
 	G.gameOverText = GameText:new("GAME OVER", gameOverFont, gameOverFontSize, Vector:new(0, 2 * G.gap))
 	G.gameOverText.text:setColor(1, 0, 0)
@@ -48,8 +48,8 @@ function GameOver:new(score)
 	G.yesText = GameText:new("Sim", textFont, textFontSize, yesPos)
 	G.noText = GameText:new("Nao", textFont, textFontSize, noPos)
 	
-	G.yesBoxPos = Rectangle:new(yesPos, Vector:new(screen.width / 2, textFontSize / 2))
-	G.noBoxPos = Rectangle:new(noPos, Vector:new(screen.width / 2, textFontSize / 2))
+	G.yesBoxPos = Rectangle:new(yesPos, Vector:new(window.width / 2, textFontSize / 2))
+	G.noBoxPos = Rectangle:new(noPos, Vector:new(window.width / 2, textFontSize / 2))
 	
 	G.textBoxSelected = nil
 	
@@ -57,7 +57,7 @@ function GameOver:new(score)
 end
 
 function GameOver:checkSelection()
-	local cursorPos = Vector:new(input.pointerPos.x - screen.width / 2, -(input.pointerPos.y - screen.height / 2))
+	local cursorPos = Vector:new(input.pointerPos.x - window.width / 2, -(input.pointerPos.y - window.height / 2))
 	
 	local selection = false
 	
@@ -128,18 +128,18 @@ function GameOver:removeSelection(text)
 	end
 end
 
-function GameOver:clean()
-	self.gameOverText:clean()
+function GameOver:clear()
+	self.gameOverText:clear()
 	
 	if self.newRecordText ~= nil then
-		self.newRecordText:clean()
+		self.newRecordText:clear()
 	end
 	
 	if self.highestScoreText ~= nil then
-		self.highestScoreText:clean()
+		self.highestScoreText:clear()
 	end
 	
-	self.playAgainText:clean()
-	self.yesText:clean()
-	self.noText:clean()
+	self.playAgainText:clear()
+	self.yesText:clear()
+	self.noText:clear()
 end

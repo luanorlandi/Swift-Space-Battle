@@ -1,6 +1,6 @@
 require "effect/spawnblink"
 
-local deckSize = Vector:new(60 * screen.scale, 60 * screen.scale)
+local deckSize = Vector:new(60 * window.scale, 60 * window.scale)
 local deck = MOAIGfxQuad2D.new()
 deck:setTexture("texture/ship/ship5.png")
 deck:setRect(-deckSize.x, -deckSize.y, deckSize.x, deckSize.y)
@@ -25,16 +25,16 @@ function Player:new(pos)
 	P.hp = 100
 	P.maxHp = 100
 	
-	P.maxAcc = 0.25 * screen.scale
+	P.maxAcc = 0.25 * window.scale
 	P.dec = P.maxAcc / 3
-	P.maxSpd = 3.5 * screen.scale
+	P.maxSpd = 3.5 * window.scale
 	P.minSpd = P.maxAcc / 5
 	P.area.size = Rectangle:new(Vector:new(0, 0), deckSize)
 	P.area:newRectangularArea(Vector:new(0, -0.4 * deckSize.y), Vector:new(0.8 * deckSize.x, 0.2 * deckSize.y))
 	P.area:newRectangularArea(Vector:new(0, 0), Vector:new(0.2 * deckSize.x, 1.0 * deckSize.y))
 	
 	P.shotType = ShotLaserBlue
-	P.shotSpd = 10 * screen.scale
+	P.shotSpd = 10 * window.scale
 	P.fireRate = 0.5
 	
 	table.insert(P.wpn, Vector:new(0.6 * P.area.size.size.x, 1.0 * P.area.size.size.y))

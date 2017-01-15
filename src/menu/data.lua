@@ -20,7 +20,7 @@ end
 function MenuData:checkSelection()
 	-- coloca a origem do cursor como sendo o centro da janela
 	-- put the cursor origin as the window center
-	local cursorPos = Vector:new(input.pointerPos.x - screen.width / 2, -(input.pointerPos.y - screen.height / 2))
+	local cursorPos = Vector:new(input.pointerPos.x - window.width / 2, -(input.pointerPos.y - window.height / 2))
 	
 	local selection = false
 	local i = 1
@@ -66,7 +66,7 @@ end
 
 function MenuData:createMainMenu()
 	-- clear previous menu, if any
-	self:cleanMenu()
+	self:clearMenu()
 	
 	texts = {}		-- has the menu strings
 	table.insert(texts, "Novo Jogo")
@@ -90,7 +90,7 @@ function MenuData:createMainMenu()
 end
 
 function MenuData:createScoreMenu()
-	self:cleanMenu()
+	self:clearMenu()
 	
 	local score = readScoreFile()
 	
@@ -109,10 +109,10 @@ function MenuData:createScoreMenu()
 end
 
 function MenuData:createOptionsMenu()
-	self:cleanMenu()
+	self:clearMenu()
 	
-	local width = math.floor(screen.width)
-	local height = math.floor(screen.height)
+	local width = math.floor(window.width)
+	local height = math.floor(window.height)
 
 	texts = {}
 	table.insert(texts, "Reinicie para aplicar alterações")
@@ -131,7 +131,7 @@ function MenuData:createOptionsMenu()
 end
 
 function MenuData:createResolutionsMenu()
-	self:cleanMenu()
+	self:clearMenu()
 	
 	-- table with all label that appears in the menu
 	local resolutionsTexts = {}
@@ -160,17 +160,17 @@ function MenuData:createResolutionsMenu()
 end
 
 function MenuData:createHowToPlayMenu()
-	self:cleanMenu()
+	self:clearMenu()
 	
 	texts = {}
 	table.insert(texts, "Ganhe pontos eliminando naves")
 	table.insert(texts, "Voltar")
 	
-	interface:createMenu(texts, -0.7 * screen.height/2)
+	interface:createMenu(texts, -0.7 * window.height/2)
 	
 	interface.textTable[1].selectable = false
 	
-	self:createBoxesMenuCustomStart(-0.7 * screen.height/2, 2)
+	self:createBoxesMenuCustomStart(-0.7 * window.height/2, 2)
 	
 	table.insert(self.menuFunction, function()  end)
 	table.insert(self.menuFunction, function() self:createMainMenu() end)
@@ -184,7 +184,7 @@ function MenuData:createBoxesMenu(n)
 	for i = 1, n, 1 do
 		local center = Vector:new(0, interface.textStart - (i - 1) * interface.textGap)
 		
-		local box = Rectangle:new(center, Vector:new(screen.width / 2, interface.textSize / 2))
+		local box = Rectangle:new(center, Vector:new(window.width / 2, interface.textSize / 2))
 	
 		table.insert(self.textBoxPos, box)
 	end
@@ -197,7 +197,7 @@ function MenuData:createBoxesMenuCustomStart(start, n)
 	for i = 1, n, 1 do
 		local center = Vector:new(0, start - (i - 1) * interface.textGap)
 		
-		local box = Rectangle:new(center, Vector:new(screen.width / 2, interface.textSize / 2))
+		local box = Rectangle:new(center, Vector:new(window.width / 2, interface.textSize / 2))
 	
 		table.insert(self.textBoxPos, box)
 	end
@@ -206,7 +206,7 @@ end
 function MenuData:newGame()
 	self.active = false
 	
-	interface:clean()
+	interface:clear()
 	
 	local gameThread = MOAICoroutine.new()
 	gameThread:run(gameLoop)
@@ -216,8 +216,8 @@ function MenuData:exitGame()
 	os.exit(0)
 end
 
-function MenuData:cleanMenu()
-	interface:cleanMenu()
+function MenuData:clearMenu()
+	interface:clearMenu()
 	
 	self.textBoxSelected = 0
 	

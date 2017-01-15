@@ -1,4 +1,4 @@
-local lifeIconSize = Vector:new(30 * screen.scale, 30 * screen.scale)
+local lifeIconSize = Vector:new(30 * window.scale, 30 * window.scale)
 local lifeIcon = MOAIGfxQuad2D.new()
 lifeIcon:setTexture("texture/ship/ship5.png")
 lifeIcon:setRect(-lifeIconSize.x, -lifeIconSize.y, lifeIconSize.x, lifeIconSize.y)
@@ -38,12 +38,12 @@ end
 
 function iconLifePos(n)
 	-- fin position 'n' that the icon will stay
-	local d = (screen.width / 2) / 5		-- distance between icons
+	local d = (window.width / 2) / 5		-- distance between icons
 	
-	return (screen.width / 2) - (n * d), -(screen.height / 2) + d
+	return (window.width / 2) - (n * d), -(window.height / 2) + d
 end
 
-function Lives:clean()
+function Lives:clear()
 	for i = 1, table.getn(self.icon), 1 do
 		layer:removeProp(self.icon[1])
 		table.remove(self.icon, 1)

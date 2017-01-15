@@ -14,7 +14,7 @@ function Scenario:new(deck, pos)
 	
 	S.startPos = Vector:new(pos.x, pos.y)
 	
-	S.size = Vector:new(screen.width / 2, screen.height / 2)
+	S.size = Vector:new(window.width / 2, window.height / 2)
 	S.limit = 2 * S.size.y
 	
 	S.sprite:setLoc(S.pos.x, S.pos.y)
@@ -33,6 +33,6 @@ function Scenario:move()
 	self.sprite:setLoc(self.pos.x, self.pos.y)
 end
 
-function Scenario:clean()
+function Scenario:clear()
 	layer:removeProp(self.sprite)
 end

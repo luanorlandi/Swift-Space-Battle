@@ -10,7 +10,7 @@ function introLoop()
 	end
 	input.pointerPressed = false
 	
-	intro:clean()
+	intro:clear()
 	
 	local menuThread = MOAICoroutine.new()
 	menuThread:run(menuLoop)

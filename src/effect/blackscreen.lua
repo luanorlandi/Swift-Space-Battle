@@ -2,7 +2,7 @@ require "effect/blend"
 
 local background = MOAIGfxQuad2D.new()
 background:setTexture("texture/effect/blackscreen.png")
-background:setRect(-screen.width/2, -screen.height/2, screen.width/2, screen.height/2)
+background:setRect(-window.width/2, -window.height/2, window.width/2, window.height/2)
 
 BlackScreen = {}
 BlackScreen.__index = BlackScreen

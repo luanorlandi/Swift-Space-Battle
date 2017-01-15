@@ -13,7 +13,7 @@ function GameText:new(text, font, size, pos)
 	G.text:setString(G.string)
 	G.text:setTextSize(size)
 	G.text:setYFlip(true)
-	G.text:setRect(-screen.width/2, -screen.height/2, screen.width/2, screen.height/2)
+	G.text:setRect(-window.width/2, -window.height/2, window.width/2, window.height/2)
 	G.text:setLoc(pos.x, pos.y)
 	G.text:setAlignment(MOAITextBox.CENTER_JUSTIFY, MOAITextBox.CENTER_JUSTIFY)
 	
@@ -22,6 +22,6 @@ function GameText:new(text, font, size, pos)
 	return G
 end
 
-function GameText:clean()
+function GameText:clear()
 	layer:removeProp(self.text)
 end

@@ -2,11 +2,11 @@ require "interface/menu/background"
 require "interface/menu/menuText"
 require "interface/menu/title"
 
-local textSize = math.floor(45 * screen.scale)
+local textSize = math.floor(45 * window.scale)
 local menuFont = MOAIFont.new()
 menuFont:loadFromTTF("font//zekton free.ttf", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-ãõç", textSize, 72)
 
-local howToPlaySize = Vector:new(0.7 * screen.width/2, 0.7 * screen.width/2)
+local howToPlaySize = Vector:new(0.7 * window.width/2, 0.7 * window.width/2)
 local howToPlayDeck = MOAIGfxQuad2D.new()
 howToPlayDeck:setTexture("texture/others/howToPlay.png")
 howToPlayDeck:setRect(-howToPlaySize.x, -howToPlaySize.y, howToPlaySize.x, howToPlaySize.y)
@@ -24,9 +24,9 @@ function MenuInterface:new()
 	M.textTable = {}
 	M.textSize = textSize
 	M.textGap = 1.75 * M.textSize		-- space between labels
-	M.textStart = 50 * screen.scale		-- first text position
+	M.textStart = 50 * window.scale		-- first text position
 	
-	M.title = Title:new(Vector:new(0, M.textStart + 220 * screen.scale))
+	M.title = Title:new(Vector:new(0, M.textStart + 220 * window.scale))
 	
 	M.howToPlaySprite = nil
 	
@@ -35,7 +35,7 @@ end
 
 function MenuInterface:createMenu(menuTable, start)
 	-- receive a table with strings of names and texts in menu
-	self:cleanMenu()
+	self:clearMenu()
 	
 	self.textTable = {}
 	
@@ -59,13 +59,13 @@ function MenuInterface:showHowToPlay()
 	
 	self.howToPlaySprite:setDeck(howToPlayDeck)
 	
-	local pos = Vector:new(0, -0.25 * screen.height/2)
+	local pos = Vector:new(0, -0.25 * window.height/2)
 	
 	self.howToPlaySprite:setLoc(pos.x, pos.y)
 	layer:insertProp(self.howToPlaySprite)
 end
 
-function MenuInterface:cleanMenu()
+function MenuInterface:clearMenu()
 	for i = 1, table.getn(self.textTable), 1 do
 		layer:removeProp(self.textTable[1].text)
 		table.remove(self.textTable, 1)
@@ -76,8 +76,8 @@ function MenuInterface:cleanMenu()
 	end
 end
 
-function MenuInterface:clean()
-	self:cleanMenu()
-	self.background:clean()
-	self.title:clean()
+function MenuInterface:clear()
+	self:clearMenu()
+	self.background:clear()
+	self.title:clear()
 end

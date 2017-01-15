@@ -11,10 +11,10 @@ MOAILogMgr.setLogLevel(MOAILogMgr.LOG_NONE)
 
 require "math/area"
 require "math/util"
-require "screen/screen"
+require "window/window"
 
-screen = Screen:new()
-layer = screen:newWindow()
+window = Window:new()
+layer = window:newWindow()
 
 require "interface/priority"
 require "loop/ingame"

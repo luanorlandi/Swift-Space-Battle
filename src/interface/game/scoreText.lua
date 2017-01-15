@@ -1,6 +1,6 @@
 require "effect/blend"
 
-local scoreFontSize = math.floor(40 * screen.scale)
+local scoreFontSize = math.floor(40 * window.scale)
 local scoreFont = MOAIFont.new()
 scoreFont:loadFromTTF("font//RosesareFF0000.ttf", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-", scoreFontSize, 72)
 
@@ -107,6 +107,6 @@ function showScoreEarnedAnim(score)
 	layer:removeProp(scoreProp.text)
 end
 
-function Score:clean()
-	self.scoreText:clean()
+function Score:clear()
+	self.scoreText:clear()
 end

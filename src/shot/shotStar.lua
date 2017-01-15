@@ -1,4 +1,4 @@
-local size = Vector:new(16 * screen.scale, 16 * screen.scale)
+local size = Vector:new(16 * window.scale, 16 * window.scale)
 
 local deck = MOAIGfxQuad2D.new()
 deck:setTexture("texture/shot/starshot.png")

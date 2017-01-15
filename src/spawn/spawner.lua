@@ -94,26 +94,26 @@ function Spawner:insertShipClass(class, qty)
 end
 
 function spawnAreas()
-	local highestX = 0.9 * (screen.width/2)
+	local highestX = 0.9 * (window.width/2)
 	
-	local lowestY = 0.4 * (screen.height/2)
-	local highestY = 0.9 * (screen.height/2)
+	local lowestY = 0.4 * (window.height/2)
+	local highestY = 0.9 * (window.height/2)
 	local halfY = (highestY - lowestY) / 2 + lowestY
 
 	local all = Rectangle:new(Vector:new(0, halfY), Vector:new(highestX, halfY - lowestY))
 	
-	highestX = 0.8 * (screen.width/2)
+	highestX = 0.8 * (window.width/2)
 	
-	lowestY = 0.75 * (screen.height/2)
-	highestY = 0.9 * (screen.height/2)
+	lowestY = 0.75 * (window.height/2)
+	highestY = 0.9 * (window.height/2)
 	halfY = (highestY - lowestY) / 2 + lowestY
 	
 	local back = Rectangle:new(Vector:new(0, halfY), Vector:new(highestX, halfY - lowestY))
 	
-	highestX = 0.6 * (screen.width/2)
+	highestX = 0.6 * (window.width/2)
 	
-	lowestY = 0.5 * (screen.height/2)
-	highestY = 0.8 * (screen.height/2)
+	lowestY = 0.5 * (window.height/2)
+	highestY = 0.8 * (window.height/2)
 	halfY = (highestY - lowestY) / 2 + lowestY
 	
 	local center = Rectangle:new(Vector:new(0, halfY), Vector:new(highestX, halfY - lowestY))

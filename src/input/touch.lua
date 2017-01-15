@@ -1,8 +1,8 @@
-local retUp =   Rectangle:new(Vector:new(screen.width/2, 0.45 * screen.height/2), Vector:new(screen.width/2, 0.45 * screen.height/2))
-local retDown = Rectangle:new(Vector:new(screen.width/2, 1.55 * screen.height/2), Vector:new(screen.width/2, 0.45 * screen.height/2))
+local retUp =   Rectangle:new(Vector:new(window.width/2, 0.45 * window.height/2), Vector:new(window.width/2, 0.45 * window.height/2))
+local retDown = Rectangle:new(Vector:new(window.width/2, 1.55 * window.height/2), Vector:new(window.width/2, 0.45 * window.height/2))
 
-local retLeft = Rectangle:new (Vector:new(screen.width/4, screen.height/2),      Vector:new(screen.width/4, 0.10 * screen.height/2))
-local retRight = Rectangle:new(Vector:new(3 * screen.width/4, screen.height/2),  Vector:new(screen.width/4, 0.10 * screen.height/2))
+local retLeft = Rectangle:new (Vector:new(window.width/4, window.height/2),      Vector:new(window.width/4, 0.10 * window.height/2))
+local retRight = Rectangle:new(Vector:new(3 * window.width/4, window.height/2),  Vector:new(window.width/4, 0.10 * window.height/2))
 
 function onTouchEvent(event, idx, x, y, tapCount)
 	if event == MOAITouchSensor.TOUCH_DOWN then

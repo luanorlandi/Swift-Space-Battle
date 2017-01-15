@@ -2,12 +2,12 @@ local ratio = 16 / 9
 local defaultWidth = 1280
 local defaultHeight = 720
 
-Screen = {}
-Screen.__index = Screen
+Window = {}
+Window.__index = Window
 
-function Screen:new()
+function Window:new()
 	local S = {}
-	setmetatable(S, Screen)
+	setmetatable(S, Window)
 
 	-- try to read from a file
 	local resolution = readResolutionFile()
@@ -25,7 +25,7 @@ function Screen:new()
 		end
 	end
 
-	-- adjust the window to be in proportion (still beaing inside the screen)
+	-- adjust the window to be in proportion (still beaing inside the window)
 	if S.height / S.width < ratio then
 		S.width = S.height / ratio
 	else
@@ -37,7 +37,7 @@ function Screen:new()
 	return S
 end
 
-function Screen:newWindow()	
+function Window:newWindow()	
 	MOAISim.openWindow("Swift Space Battle", self.width, self.height)
 
 	MOAIEnvironment.setListener(MOAIEnvironment.EVENT_VALUE_CHANGED, onEventValueChanged)
@@ -87,7 +87,7 @@ function readListOfResolutionsFile()
 	
 	local resolutionsTable = {}
 
-	-- to avoid texts go out of the screen
+	-- to avoid texts go out of the window
 	local limit = 7 	-- limit of options available
 	
 	if file ~= nil then
@@ -111,13 +111,13 @@ function onEventValueChanged(key, value)
 	-- if the window size changed, it will be called
 
 	if key == "horizontalResolution" then
-		screen.width = value
-		viewport:setSize(screen.width, screen.height)
-		viewport:setScale(screen.width, screen.height)
+		window.width = value
+		viewport:setSize(window.width, window.height)
+		viewport:setScale(window.width, window.height)
 	elseif key == "verticalResolution" then
-		screen.height = value
-		viewport:setSize(screen.width, screen.height)
-		viewport:setScale(screen.width, screen.height)
+		window.height = value
+		viewport:setSize(window.width, window.height)
+		viewport:setScale(window.width, window.height)
 	end
 end
 
@@ -146,7 +146,7 @@ function showInfo()
 	print("osBrand", MOAIEnvironment.osBrand)
 	print("osVersion", MOAIEnvironment.osVersion)
 	print("resourceDirectory", MOAIEnvironment.resourceDirectory)
-	print("screenDpi", MOAIEnvironment.screenDpi)
+	print("windowDpi", MOAIEnvironment.windowDpi)
 	print("verticalResolution", MOAIEnvironment.verticalResolution)
 	print("horizontalResolution", MOAIEnvironment.horizontalResolution)
 	print("udid", MOAIEnvironment.udid)

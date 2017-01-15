@@ -2,15 +2,15 @@ require "effect/blend"
 
 local deckLua = MOAIGfxQuad2D.new()
 deckLua:setTexture("texture/logo/lua.png")
-deckLua:setRect(-screen.width/2, -screen.height/2, screen.width/2, screen.height/2)
+deckLua:setRect(-window.width/2, -window.height/2, window.width/2, window.height/2)
 
 local deckMOAI = MOAIGfxQuad2D.new()
 deckMOAI:setTexture("texture/logo/moai.png")
-deckMOAI:setRect(-screen.width/2, -screen.height/2, screen.width/2, screen.height/2)
+deckMOAI:setRect(-window.width/2, -window.height/2, window.width/2, window.height/2)
 
 local whiteScreen = MOAIGfxQuad2D.new()
 whiteScreen:setTexture("texture/effect/whitescreen.png")
-whiteScreen:setRect(-screen.width/2, -screen.height/2, screen.width/2, screen.height/2)
+whiteScreen:setRect(-window.width/2, -window.height/2, window.width/2, window.height/2)
 
 Intro = {}
 Intro.__index = Intro
@@ -114,7 +114,7 @@ function Intro:loop()
 	end
 end
 
-function Intro:clean()
+function Intro:clear()
 	layer:removeProp(self.background)
 	
 	for i = 1, table.getn(self.logos), 1 do
