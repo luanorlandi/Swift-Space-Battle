@@ -4,7 +4,7 @@
 # application bundle. These are relative to your project src
 #----------------------------------------------------------------#
 
-package: com.getmoai.samples
+package: com.swift-space-battle
 
 src_dir: .
 
