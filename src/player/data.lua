@@ -41,9 +41,12 @@ function PlayerData:gameOver()
 	
 	score = tonumber(score)
 	
-	if self.score > score then
+	if (score ~= nil and self.score > score) or
+		self.score > highestScore then
+
 		writeScoreFile(self.score)
-	
+		highestScore = self.score		-- update local save score
+		
 		interface:showGameOver(self.score)
 	else
 		interface:showGameOver()
@@ -128,7 +131,7 @@ function readScoreFile()
 	
 	-- probably a unexpected host (like html)
 	if path == nil then
-		return nil
+		return highestScore
 	end
 
 	local file = io.open(path .. "\\score.lua", "r")

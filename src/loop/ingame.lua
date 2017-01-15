@@ -9,6 +9,9 @@ require "player/level"
 require "interface/game/gameInterface"
 require "effect/blackscreen"
 
+-- save a local score, useful for unexpected host (like html)
+highestScore = 0
+
 function gameLoop()
 	local blackscreen = BlackScreen:new(3)
 	blackscreen:fadeOut()
