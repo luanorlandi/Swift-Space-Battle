@@ -7,9 +7,6 @@ For more information, access https://github.com/luanorlandi/Swift-Space-Battle
 --------------------------------------------------------------------------------
 ]]
 
-local testfile = os.getenv("INTERNAL_STORAGE")
-print(testfile)
-
 MOAILogMgr.setLogLevel(MOAILogMgr.LOG_NONE)
 
 require "math/area"

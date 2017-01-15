@@ -103,11 +103,38 @@ function PlayerData:clean()
 	map:clean()
 end
 
+function locateSaveLocation()
+	-- get all possible file locations
+	local document = MOAIEnvironment.documentDirectory
+	local cache = MOAIEnvironment.cacheDirectory
+	local resource = MOAIEnvironment.resourceDirectory
+	local working = MOAIFileSystem.getWorkingDirectory()
+
+	-- priority, get the first that is not nil
+	local path = cache or document or resource or working
+
+	if MOAIEnvironment.osBrand == "Windows" and path ~= nil then
+		path = path .. "\\My Games\\swift-space-battle"
+
+		-- create a folder at 'path' if none exists
+		MOAIFileSystem.affirmPath(path)
+	end
+
+	return path
+end
+
 function readScoreFile()
-	local file = io.open("file/score.lua", "r")
+	local path = locateSaveLocation()
+	
+	-- probably a unexpected host (like html)
+	if path == nil then
+		return nil
+	end
+
+	local file = io.open(path .. "\\score.lua", "r")
 	
 	local score = 0
-	
+	 
 	if file ~= nil then
 		score = file:read()
 		
@@ -116,17 +143,29 @@ function readScoreFile()
 		end
 		
 		io.close(file)
+	else
+		-- create file
+		writeScoreFile(score)
 	end
 	
 	return score
 end
 
 function writeScoreFile(score)
-	local file = io.open("file/score.lua", "w")
+	local path = locateSaveLocation()
+	
+	-- probably a unexpected host (like html)
+	if path == nil then
+		return nil
+	end
+
+	local file = io.open(path .. "\\score.lua", "w")
 	
 	if file ~= nil then
 		file:write(score)
 		
 		io.close(file)
+	else
+		print("error in write")
 	end
 end
