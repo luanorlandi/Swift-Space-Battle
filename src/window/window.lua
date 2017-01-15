@@ -9,12 +9,7 @@ function Window:new()
 	local S = {}
 	setmetatable(S, Window)
 
-	-- try to read from a file
-	local resolution = readResolutionFile()
-	S.width = resolution.x
-	S.height = resolution.y
-	
-	-- if was not possible, try to get from OS
+	-- try to get from OS
 	if S.width == nil or S.width == 0 or S.height == nil or S.height == 0 then
 		S.width, S.height = MOAIGfxDevice.getViewSize()
 		
@@ -54,56 +49,6 @@ function Window:newWindow()
 	MOAIRenderMgr.pushRenderPass(layer)
 	
 	return layer
-end
-
-function readResolutionFile()
-	local file = io.open("file/options.lua", "r")
-	
-	local resolution = Vector:new(0, 0)
-	
-	if file ~= nil then
-		resolution.x = tonumber(file:read())
-		resolution.y = tonumber(file:read())
-		
-		io.close(file)
-	end
-	
-	return resolution
-end
-
-function writeResolutionFile(resolution)
-	local file = io.open("file/options.lua", "w")
-	
-	if file ~= nil then
-		file:write(resolution.x .. "\n")
-		file:write(resolution.y)
-		
-		io.close(file)
-	end
-end
-
-function readListOfResolutionsFile()
-	local file = io.open("file/listOfResolutions.lua", "r")
-	
-	local resolutionsTable = {}
-
-	-- to avoid texts go out of the window
-	local limit = 7 	-- limit of options available
-	
-	if file ~= nil then
-		repeat
-			local width = file:read()
-			local height = file:read()
-		
-			if width ~= nil and height ~= nil then
-				table.insert(resolutionsTable, Vector:new(width, height))
-			end
-		until (width == nil and height == nil) or (table.getn(resolutionsTable) >= limit)
-		
-		io.close(file)
-	end
-	
-	return resolutionsTable
 end
 
 function onEventValueChanged(key, value)
