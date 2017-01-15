@@ -1,0 +1,21 @@
+modules:
+  BOX2D: true
+  CHIPMUNK: false
+  CURL: false
+  CRYPTO: false
+  EXPAT: false
+  FREETYPE: true
+  JSON: true
+  JPG: false
+  LUAEXT: false
+  MONGOOSE: false
+  OGG: false
+  OPENSSL: false
+  SQLITE3: false
+  TINYXML: true
+  PNG: true
+  SFMT: false
+  VORBIS: false
+  HTTP_CLIENT: false
+  UNTZ: true
+

@@ -4,7 +4,7 @@
 # application bundle. These are relative to your project src
 #----------------------------------------------------------------#
 
-package: com.swift-space-battle
+package: com.swift_space_battle
 
 src_dir: .
 
