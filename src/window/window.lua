@@ -46,7 +46,7 @@ function Window:new()
 	W.layer = MOAILayer2D.new()
 	W.layer:setViewport(viewport)
 	
-	MOAIEnvironment.setListener(MOAIEnvironment.EVENT_VALUE_CHANGED, onEventValueChanged)
+	--MOAIEnvironment.setListener(MOAIEnvironment.EVENT_VALUE_CHANGED, onEventValueChanged)
 
 	MOAIRenderMgr.pushRenderPass(W.layer)
 	
