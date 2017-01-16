@@ -68,25 +68,61 @@ function MenuData:createMainMenu()
 	-- clear previous menu, if any
 	self:clearMenu()
 	
-	texts = {}		-- has the menu strings
-	table.insert(texts, "Novo Jogo")
-	table.insert(texts, "Como Jogar")
-	table.insert(texts, "Maior Pontuação")
-	table.insert(texts, "Opções")
-	table.insert(texts, "Sair")
-	
-	-- create a new menu
-	interface:createMenu(texts)
-	
-	-- create the label boxes to allow selection
-	self:createBoxesMenu(5)
-	
-	-- define what each menu item will do
-	table.insert(self.menuFunction, function() self:newGame() end)
-	table.insert(self.menuFunction, function() self:createHowToPlayMenu() end)
-	table.insert(self.menuFunction, function() self:createScoreMenu() end)
-	table.insert(self.menuFunction, function() self:createOptionsMenu() end)
-	table.insert(self.menuFunction, function() self:exitGame() end)
+	if(MOAIEnvironment.osBrand == "Windows") then
+		texts = {}		-- has the menu strings
+		table.insert(texts, "Novo Jogo")
+		table.insert(texts, "Como Jogar")
+		table.insert(texts, "Maior Pontuação")
+		table.insert(texts, "Opções")
+		table.insert(texts, "Sair")
+		
+		-- create a new menu
+		interface:createMenu(texts)
+		
+		-- create the label boxes to allow selection
+		self:createBoxesMenu(5)
+		
+		-- define what each menu item will do
+		table.insert(self.menuFunction, function() self:newGame() end)
+		table.insert(self.menuFunction, function() self:createHowToPlayMenu() end)
+		table.insert(self.menuFunction, function() self:createScoreMenu() end)
+		table.insert(self.menuFunction, function() self:createOptionsMenu() end)
+		table.insert(self.menuFunction, function() self:exitGame() end)
+	elseif(MOAIEnvironment.osBrand == "Android") then
+		texts = {}		-- has the menu strings
+		table.insert(texts, "Novo Jogo")
+		table.insert(texts, "Como Jogar")
+		table.insert(texts, "Maior Pontuação")
+		table.insert(texts, "Sair")
+		
+		-- create a new menu
+		interface:createMenu(texts)
+		
+		-- create the label boxes to allow selection
+		self:createBoxesMenu(4)
+		
+		-- define what each menu item will do
+		table.insert(self.menuFunction, function() self:newGame() end)
+		table.insert(self.menuFunction, function() self:createHowToPlayMenu() end)
+		table.insert(self.menuFunction, function() self:createScoreMenu() end)
+		table.insert(self.menuFunction, function() self:exitGame() end)
+	else	-- probably html host
+		texts = {}		-- has the menu strings
+		table.insert(texts, "Novo Jogo")
+		table.insert(texts, "Como Jogar")
+		table.insert(texts, "Maior Pontuação")
+		
+		-- create a new menu
+		interface:createMenu(texts)
+		
+		-- create the label boxes to allow selection
+		self:createBoxesMenu(3)
+		
+		-- define what each menu item will do
+		table.insert(self.menuFunction, function() self:newGame() end)
+		table.insert(self.menuFunction, function() self:createHowToPlayMenu() end)
+		table.insert(self.menuFunction, function() self:createScoreMenu() end)
+	end
 end
 
 function MenuData:createScoreMenu()
