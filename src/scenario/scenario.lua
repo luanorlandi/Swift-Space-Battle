@@ -18,7 +18,7 @@ function Scenario:new(deck, pos)
 	S.limit = 2 * S.size.y
 	
 	S.sprite:setLoc(S.pos.x, S.pos.y)
-	layer:insertProp(S.sprite)
+	window.layer:insertProp(S.sprite)
 	
 	return S
 end
@@ -34,5 +34,5 @@ function Scenario:move()
 end
 
 function Scenario:clear()
-	layer:removeProp(self.sprite)
+	window.layer:removeProp(self.sprite)
 end

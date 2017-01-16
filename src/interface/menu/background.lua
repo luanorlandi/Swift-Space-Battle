@@ -14,11 +14,11 @@ function Background:new()
 	B.sprite:setDeck(deck)
 	
 	B.sprite:setLoc(0, 0)
-	layer:insertProp(B.sprite)
+	window.layer:insertProp(B.sprite)
 	
 	return B
 end
 
 function Background:clear()
-	layer:removeProp(self.sprite)
+	window.layer:removeProp(self.sprite)
 end

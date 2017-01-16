@@ -44,7 +44,7 @@ function Explosion:new(deck, pos, duration, frames)
 	E.complete = false
 	
 	E.sprite:setLoc(E.pos.x, E.pos.y)
-	layer:insertProp(E.sprite)
+	window.layer:insertProp(E.sprite)
 	
 	return E
 end

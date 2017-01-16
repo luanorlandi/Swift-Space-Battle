@@ -53,7 +53,7 @@ function showScoreAnim(score, pos)
 		end
 	end
 	
-	layer:removeProp(scoreProp.scoreText.text)
+	window.layer:removeProp(scoreProp.scoreText.text)
 end
 
 function showScoreEarnedAnim(score)
@@ -104,7 +104,7 @@ function showScoreEarnedAnim(score)
 		end
 	end
 	
-	layer:removeProp(scoreProp.text)
+	window.layer:removeProp(scoreProp.text)
 end
 
 function Score:clear()

@@ -14,11 +14,11 @@ function Title:new(pos)
 	T.sprite:setDeck(deck)
 	
 	T.sprite:setLoc(pos.x, pos.y)
-	layer:insertProp(T.sprite)
+	window.layer:insertProp(T.sprite)
 	
 	return T
 end
 
 function Title:clear()
-	layer:removeProp(self.sprite)
+	window.layer:removeProp(self.sprite)
 end

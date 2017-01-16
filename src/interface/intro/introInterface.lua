@@ -24,7 +24,7 @@ function Intro:new(pos)
 	changePriority(I.background, "interface")
 	I.background:setDeck(whiteScreen)
 	
-	layer:insertProp(I.background)
+	window.layer:insertProp(I.background)
 	
 	I.logos = {}
 	
@@ -35,7 +35,7 @@ function Intro:new(pos)
 	
 	lua:setBlendMode(MOAIProp.GL_SRC_ALPHA, MOAIProp.GL_ONE_MINUS_SRC_ALPHA)
 	lua:setColor(1, 1, 1, 0)
-	layer:insertProp(lua)
+	window.layer:insertProp(lua)
 	
 	table.insert(I.logos, lua)
 	
@@ -46,7 +46,7 @@ function Intro:new(pos)
 	
 	moai:setBlendMode(MOAIProp.GL_SRC_ALPHA, MOAIProp.GL_ONE_MINUS_SRC_ALPHA)
 	moai:setColor(1, 1, 1, 0)
-	layer:insertProp(moai)
+	window.layer:insertProp(moai)
 	
 	table.insert(I.logos, moai)
 	
@@ -109,16 +109,16 @@ function Intro:loop()
 	
 	-- remove logos -------------------------------------
 	for i = 1, table.getn(self.logos), 1 do
-		layer:removeProp(self.logos[1])
+		window.layer:removeProp(self.logos[1])
 		table.remove(self.logos, 1)
 	end
 end
 
 function Intro:clear()
-	layer:removeProp(self.background)
+	window.layer:removeProp(self.background)
 	
 	for i = 1, table.getn(self.logos), 1 do
-		layer:removeProp(self.logos[1])
+		window.layer:removeProp(self.logos[1])
 		table.remove(self.logos, 1)
 	end
 end

@@ -16,7 +16,7 @@ function BlackScreen:new(duration)
 	B.sprite = MOAIProp.new()
 	B.sprite:setDeck(background)
 	changePriority(B.sprite, "interface")
-	layer:insertProp(B.sprite)
+	window.layer:insertProp(B.sprite)
 	
 	return B
 end

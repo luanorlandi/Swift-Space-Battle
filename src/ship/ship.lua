@@ -82,7 +82,7 @@ function Ship:new(deck, pos)
 	S.threadsSprites = {}
 	
 	S.sprite:setLoc(S.pos.x, S.pos.y)
-	layer:insertProp(S.sprite)
+	window.layer:insertProp(S.sprite)
 	
 	return S
 end
@@ -167,11 +167,11 @@ end
 
 function Ship:destroy()
 	-- remove ship sprite
-	layer:removeProp(self.sprite)
+	window.layer:removeProp(self.sprite)
 	
 	-- remove all sprite effects created by his threads
 	for i = 1, table.getn(self.threadsSprites), 1 do
-		layer:removeProp(self.threadsSprites[1])
+		window.layer:removeProp(self.threadsSprites[1])
 		table.remove(self.threadsSprites, 1)
 	end
 end
@@ -220,7 +220,7 @@ function Ship:explode()
 	while explosion.anim:isActive() do
 		coroutine.yield()
 	end
-	layer:removeProp(explosion.sprite)
+	window.layer:removeProp(explosion.sprite)
 	self.destroy = true
 end
 
@@ -235,7 +235,7 @@ function Ship:muzzleflashType1()
 		flash:setDeck(muzzleflash)
 		flash:setLoc(self.pos.x + self.fla[i].x, self.pos.y + self.aim.y * self.fla[i].y)
 		flash:moveScl(-1, -1, self.flaDuration)
-		layer:insertProp(flash)
+		window.layer:insertProp(flash)
 		
 		table.insert(mf, flash)
 	end
@@ -250,7 +250,7 @@ function Ship:muzzleflashType1()
 	end
 
 	while table.getn(mf) ~= 0 do
-		layer:removeProp(mf[1])
+		window.layer:removeProp(mf[1])
 		table.remove(mf, 1)
 	end
 end
@@ -267,7 +267,7 @@ function Ship:muzzleflashType2(deck)
 	local blendThread = coroutine.create(function() blendOut(flash, self.flaDuration) end)
 	coroutine.resume(blendThread)
 	
-	layer:insertProp(flash)
+	window.layer:insertProp(flash)
 	
 	local start = gameTime
 	
@@ -277,7 +277,7 @@ function Ship:muzzleflashType2(deck)
 		flash:setLoc(self.pos.x, self.pos.y)
 	end
 	
-	layer:removeProp(flash)
+	window.layer:removeProp(flash)
 end
 
 function Ship:hpRegen()

@@ -23,7 +23,7 @@ function Shot:new(deck, pos)
 	S.area = Area:new(Vector:new(0, 0))
 	
 	S.sprite:setLoc(S.pos.x, S.pos.y)
-	layer:insertProp(S.sprite)
+	window.layer:insertProp(S.sprite)
 	
 	return S
 end
@@ -34,7 +34,7 @@ function Shot:move()
 end
 
 function Shot:destroy()
-	layer:removeProp(self.sprite)
+	window.layer:removeProp(self.sprite)
 end
 
 function shotsMove()
@@ -101,12 +101,12 @@ end
 
 function shotsClear()
 	for i = 1, table.getn(playerShots), 1 do
-		layer:removeProp(playerShots[1].sprite)
+		window.layer:removeProp(playerShots[1].sprite)
 		table.remove(playerShots, 1)
 	end
 	
 	for i = 1, table.getn(enemiesShots), 1 do
-		layer:removeProp(enemiesShots[1].sprite)
+		window.layer:removeProp(enemiesShots[1].sprite)
 		table.remove(enemiesShots, 1)
 	end
 end

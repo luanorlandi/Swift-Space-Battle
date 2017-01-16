@@ -62,17 +62,17 @@ function MenuInterface:showHowToPlay()
 	local pos = Vector:new(0, -0.25 * window.height/2)
 	
 	self.howToPlaySprite:setLoc(pos.x, pos.y)
-	layer:insertProp(self.howToPlaySprite)
+	window.layer:insertProp(self.howToPlaySprite)
 end
 
 function MenuInterface:clearMenu()
 	for i = 1, table.getn(self.textTable), 1 do
-		layer:removeProp(self.textTable[1].text)
+		window.layer:removeProp(self.textTable[1].text)
 		table.remove(self.textTable, 1)
 	end
 	
 	if self.howToPlaySprite ~= nil then
-		layer:removeProp(self.howToPlaySprite)
+		window.layer:removeProp(self.howToPlaySprite)
 	end
 end
 

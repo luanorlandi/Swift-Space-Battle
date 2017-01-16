@@ -16,7 +16,7 @@ function BorderHp:new()
 	B.sprite:setDeck(borderHpDeck)
 	
 	B.sprite:setLoc(0, 0)
-	layer:insertProp(B.sprite)
+	window.layer:insertProp(B.sprite)
 	
 	B.thread = coroutine.create(function()
 		B:showBorderHp()
@@ -44,5 +44,5 @@ function BorderHp:showBorderHp()
 end
 
 function BorderHp:clear()
-	layer:removeProp(self.sprite)
+	window.layer:removeProp(self.sprite)
 end

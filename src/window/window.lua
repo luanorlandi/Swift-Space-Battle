@@ -6,54 +6,48 @@ Window = {}
 Window.__index = Window
 
 function Window:new()
-	local S = {}
-	setmetatable(S, Window)
+	local W = {}
+	setmetatable(W, Window)
 
 	-- try to read from a file
 	local resolution = readResolutionFile()
-	S.width = resolution.x
-	S.height = resolution.y
+	W.width = resolution.x
+	W.height = resolution.y
 	
 	-- if was not possible, try to get from OS
-	if S.width == nil or S.width == 0 or S.height == nil or S.height == 0 then
-		S.width, S.height = MOAIGfxDevice.getViewSize()
+	if W.width == nil or W.width == 0 or W.height == nil or W.height == 0 then
+		W.width, W.height = MOAIGfxDevice.getViewSize()
 		
 		-- if was not possible, create a window with default resolution
-		if S.width == nil or S.width == 0 or S.height == nil or S.height == 0 then
-			S.width = defaultWidth
-			S.height = defaultHeight
+		if W.width == nil or W.width == 0 or W.height == nil or W.height == 0 then
+			W.width = defaultWidth
+			W.height = defaultHeight
 		end
 	end
 
 	-- adjust the window to be in proportion (still beaing inside the window)
-	if S.height / S.width < ratio then
-		S.width = S.height / ratio
+	if W.height / W.width < ratio then
+		W.width = W.height / ratio
 	else
-		S.height = S.width * ratio
+		W.height = W.width * ratio
 	end
 	
-	S.scale = S.height / 1280
-	
-	return S
-end
+	W.scale = W.height / 1280
 
-function Window:newWindow()	
-	MOAISim.openWindow("Swift Space Battle", self.width, self.height)
+	MOAISim.openWindow("Swift Space Battle", W.width, W.height)
 
-	MOAIEnvironment.setListener(MOAIEnvironment.EVENT_VALUE_CHANGED, onEventValueChanged)
-	
 	viewport = MOAIViewport.new()
-	viewport:setSize(self.width, self.height)
-	viewport:setScale(self.width, self.height)
+	viewport:setSize(W.width, W.height)
+	viewport:setScale(W.width, W.height)
 
-	layer = MOAILayer2D.new()
-	layer:setViewport(viewport)
+	W.layer = MOAILayer2D.new()
+	W.layer:setViewport(viewport)
 	
 	MOAIEnvironment.setListener(MOAIEnvironment.EVENT_VALUE_CHANGED, onEventValueChanged)
 
-	MOAIRenderMgr.pushRenderPass(layer)
+	MOAIRenderMgr.pushRenderPass(W.layer)
 	
-	return layer
+	return W
 end
 
 function readResolutionFile()

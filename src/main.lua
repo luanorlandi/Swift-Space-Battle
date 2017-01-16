@@ -14,7 +14,6 @@ require "math/util"
 require "window/window"
 
 window = Window:new()
-layer = window:newWindow()
 
 require "interface/priority"
 require "loop/ingame"

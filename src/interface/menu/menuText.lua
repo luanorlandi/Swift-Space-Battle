@@ -24,7 +24,7 @@ function MenuText:new(text, pos)
 	T.text:setLoc(pos.x, pos.y)
 	T.text:setAlignment(MOAITextBox.CENTER_JUSTIFY, MOAITextBox.CENTER_JUSTIFY)
 	changePriority(T.text, "interface")
-	layer:insertProp(T.text)
+	window.layer:insertProp(T.text)
 	
 	return T
 end

@@ -17,11 +17,11 @@ function GameText:new(text, font, size, pos)
 	G.text:setLoc(pos.x, pos.y)
 	G.text:setAlignment(MOAITextBox.CENTER_JUSTIFY, MOAITextBox.CENTER_JUSTIFY)
 	
-	layer:insertProp(G.text)
+	window.layer:insertProp(G.text)
 	
 	return G
 end
 
 function GameText:clear()
-	layer:removeProp(self.text)
+	window.layer:removeProp(self.text)
 end

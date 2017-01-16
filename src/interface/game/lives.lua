@@ -20,7 +20,7 @@ function Lives:new(qty)
 		sprite:setDeck(lifeIcon)
 		
 		sprite:setLoc(iconLifePos(i))
-		layer:insertProp(sprite)
+		window.layer:insertProp(sprite)
 		
 		table.insert(L.icon, sprite)
 	end
@@ -30,7 +30,7 @@ end
 
 function Lives:decrease()
 	if table.getn(self.icon) > 0 then
-		layer:removeProp(self.icon[table.getn(self.icon)])
+		window.layer:removeProp(self.icon[table.getn(self.icon)])
 		table.remove(self.icon, table.getn(self.icon))
 		self.qty = self.qty - 1
 	end
@@ -45,7 +45,7 @@ end
 
 function Lives:clear()
 	for i = 1, table.getn(self.icon), 1 do
-		layer:removeProp(self.icon[1])
+		window.layer:removeProp(self.icon[1])
 		table.remove(self.icon, 1)
 	end
 end
