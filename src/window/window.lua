@@ -25,11 +25,13 @@ function Window:new()
 		end
 	end
 
-	-- adjust the window to be in proportion (still beaing inside the window)
-	if W.height / W.width < ratio then
-		W.width = W.height / ratio
-	else
-		W.height = W.width * ratio
+	if(MOAIEnvironment.osBrand ~= "Android") then
+		-- adjust the window to be in proportion (still being inside the window)
+		if W.height / W.width < ratio then
+			W.width = W.height / ratio
+		else
+			W.height = W.width * ratio
+		end
 	end
 	
 	W.scale = W.height / 1280
@@ -39,6 +41,7 @@ function Window:new()
 	viewport = MOAIViewport.new()
 	viewport:setSize(W.width, W.height)
 	viewport:setScale(W.width, W.height)
+	viewport:setOffset ( 0, 0 )
 
 	W.layer = MOAILayer2D.new()
 	W.layer:setViewport(viewport)
