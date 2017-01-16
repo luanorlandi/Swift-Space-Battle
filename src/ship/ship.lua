@@ -125,11 +125,13 @@ function Ship:move()
 end
 
 function Ship:moveLimit()
-	if self.pos.x > window.width/2 + self.area.size.size.x then
-		self.pos.x = -window.width/2 - self.area.size.size.x
-	else if self.pos.x < -window.width/2 - self.area.size.size.x then
-			self.pos.x = window.width/2 + self.area.size.size.x
-		end
+	-- fix ship position
+	if self.pos.x > window.width/2 - self.area.size.size.x then
+		self.pos.x = window.width/2 - self.area.size.size.x
+		self.spd.x = 0
+	elseif self.pos.x < -window.width/2 + self.area.size.size.x then
+		self.pos.x = -window.width/2 + self.area.size.size.x
+		self.spd.x = 0
 	end
 end
 

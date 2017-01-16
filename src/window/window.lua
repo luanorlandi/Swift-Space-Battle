@@ -1,13 +1,11 @@
-local ratio = 16 / 9
-local defaultWidth = 1280
-local defaultHeight = 720
-
 Window = {}
 Window.__index = Window
 
 function Window:new()
 	local W = {}
 	setmetatable(W, Window)
+
+	W.ratio = 16 / 9
 
 	-- try to read from a file
 	local resolution = readResolutionFile()
@@ -20,17 +18,17 @@ function Window:new()
 		
 		-- if was not possible, create a window with default resolution
 		if W.width == nil or W.width == 0 or W.height == nil or W.height == 0 then
-			W.width = defaultWidth
-			W.height = defaultHeight
+			W.width = 1280
+			W.height = 720
 		end
 	end
 
-	if(MOAIEnvironment.osBrand ~= "Android") then
+	if MOAIEnvironment.osBrand ~= "Android" then
 		-- adjust the window to be in proportion (still being inside the window)
-		if W.height / W.width < ratio then
-			W.width = W.height / ratio
+		if W.height / W.width < W.ratio then
+			W.width = W.height / W.ratio
 		else
-			W.height = W.width * ratio
+			W.height = W.width * W.ratio
 		end
 	end
 	
