@@ -12,17 +12,20 @@ function MenuData:new()
 	
 	M.menuFunction = {}
 	
+	M.resolutionsAvailable = readListOfResolutionsFile()
+	
 	return M
 end
 
 function MenuData:checkSelection()
+	-- coloca a origem do cursor como sendo o centro da janela
 	-- put the cursor origin as the window center
 	local cursorPos = Vector:new(input.pointerPos.x - window.width / 2, -(input.pointerPos.y - window.height / 2))
 	
 	local selection = false
 	local i = 1
 	
-	-- search in each label box which one is selected
+	-- procura em cada caixa de texto qual esta sendo selecionada
 	while i <= table.getn(self.textBoxPos) and not selection do
 		if self.textBoxPos[i]:pointInside(cursorPos) then
 			if i ~= self.textBoxSelected then
@@ -52,6 +55,7 @@ function MenuData:checkPressed()
 	if input.pointerPressed then
 		input.pointerPressed = false
 		
+		-- checa se tem algo selecionado
 		-- check if there is something selected
 		if self.textBoxSelected ~= 0 then
 			-- make the menu function selected
@@ -68,18 +72,20 @@ function MenuData:createMainMenu()
 	table.insert(texts, "Novo Jogo")
 	table.insert(texts, "Como Jogar")
 	table.insert(texts, "Maior Pontuação")
+	table.insert(texts, "Opções")
 	table.insert(texts, "Sair")
 	
 	-- create a new menu
 	interface:createMenu(texts)
 	
 	-- create the label boxes to allow selection
-	self:createBoxesMenu(4)
+	self:createBoxesMenu(5)
 	
 	-- define what each menu item will do
 	table.insert(self.menuFunction, function() self:newGame() end)
 	table.insert(self.menuFunction, function() self:createHowToPlayMenu() end)
 	table.insert(self.menuFunction, function() self:createScoreMenu() end)
+	table.insert(self.menuFunction, function() self:createOptionsMenu() end)
 	table.insert(self.menuFunction, function() self:exitGame() end)
 end
 
@@ -100,6 +106,57 @@ function MenuData:createScoreMenu()
 	
 	table.insert(self.menuFunction, function()  end)
 	table.insert(self.menuFunction, function() self:createMainMenu() end)
+end
+
+function MenuData:createOptionsMenu()
+	self:clearMenu()
+	
+	local width = math.floor(window.width)
+	local height = math.floor(window.height)
+
+	texts = {}
+	table.insert(texts, "Reinicie para aplicar alterações")
+	table.insert(texts, "Resolução (atual " .. width .. "x" .. height .. ")")
+	table.insert(texts, "Voltar")
+	
+	interface:createMenu(texts)
+	
+	interface.textTable[1].selectable = false
+	
+	self:createBoxesMenu(3)
+	
+	table.insert(self.menuFunction, function()  end)
+	table.insert(self.menuFunction, function() self:createResolutionsMenu() end)
+	table.insert(self.menuFunction, function() self:createMainMenu() end)
+end
+
+function MenuData:createResolutionsMenu()
+	self:clearMenu()
+	
+	-- table with all label that appears in the menu
+	local resolutionsTexts = {}
+	
+	for i = 1, table.getn(self.resolutionsAvailable), 1 do
+		
+		table.insert(self.menuFunction, function()
+			writeResolutionFile(self.resolutionsAvailable[i])
+			
+			self:createOptionsMenu()
+		end)
+		
+		local width = math.floor(self.resolutionsAvailable[i].x)
+		local height = math.floor(self.resolutionsAvailable[i].y)
+		
+		table.insert(resolutionsTexts, width .. "x" .. height)
+	end
+	
+	-- include the return button at the end
+	table.insert(self.menuFunction, function() self:createOptionsMenu() end)
+	table.insert(resolutionsTexts, "Voltar")
+	
+	self:createBoxesMenu(table.getn(resolutionsTexts))
+	
+	interface:createMenu(resolutionsTexts)
 end
 
 function MenuData:createHowToPlayMenu()
