@@ -22,7 +22,7 @@ function Spawner:new()
 	S.totalUp = 0
 	S.totalDown = 0
 	S.maxSide = 0			-- difference limit of ships in the same side
-	
+
 	S.shipsClass = {}
 	
 	S.shipsAvailables = {}
@@ -81,7 +81,7 @@ function Spawner:decrease(class, side)
 	else
 		self.totalDown = self.totalDown - 1
 	end
-	
+
 	self.shipsClass[class]:decrease(side)
 	
 	self:insertShipClass(class, 1)
@@ -146,7 +146,7 @@ end
 
 function Spawner:levelUp()
 	-- advance a level each time is resumed
-	
+
 	-- level 1
 	self.normalRate = 3
 	self.fastRate = self.rate * (4/4)
@@ -155,21 +155,23 @@ function Spawner:levelUp()
 	self.limit = 2
 	self.maxSide = 2
 	
-	table.insert(self.shipsClass, 2, ShipClass:new(EnemyType2, 2, self.areaAll))
+	self.shipsClass[2] = ShipClass:new(EnemyType2, 2, self.areaAll)
+	--table.insert(self.shipsClass, 2, ShipClass:new(EnemyType2, 2, self.areaAll))
 	
 	self:insertShipClass(2, self.shipsClass[2].limit)
 	coroutine.yield()
-	
+
 	-- level 2
 	self.normalRate = 2.9
 	self.fastRate = self.rate * (4/4)
 	self.veryFastRate = self.rate * (3/4)
 	
-	table.insert(self.shipsClass, 1, ShipClass:new(EnemyType1, 1, self.areaAll))
+	self.shipsClass[1] = ShipClass:new(EnemyType1, 1, self.areaAll)
+	--table.insert(self.shipsClass, 1, ShipClass:new(EnemyType1, 1, self.areaAll))
 	
 	self:insertShipClass(1, self.shipsClass[1].limit)
 	coroutine.yield()
-	
+
 	-- level 3
 	self.normalRate = 2.8
 	self.fastRate = self.rate * (3/4)

@@ -2,7 +2,7 @@ ShipClass = {}
 ShipClass.__index = ShipClass
 
 function ShipClass:new(class, limit, range)
-	-- create a counter for how much ship of type "class" area in the game
+	-- create a counter for how much ship of type "class" are in the game
 	-- "limit" is the limit of ships of type "class"
 	-- "range" is the area (rectangle) that the ship spawn
 	
