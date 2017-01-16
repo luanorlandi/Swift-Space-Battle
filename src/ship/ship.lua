@@ -156,15 +156,6 @@ function Ship:newShot(shots, pos)
 	table.insert(shots, shot)
 end
 
-function Ship:moveLimit()
-	if self.pos.x > window.width/2 + self.area.size.size.x then
-		self.pos.x = -window.width/2 - self.area.size.size.x
-	else if self.pos.x < -window.width/2 - self.area.size.size.x then
-			self.pos.x = window.width/2 + self.area.size.size.x
-		end
-	end
-end
-
 function Ship:destroy()
 	-- remove ship sprite
 	window.layer:removeProp(self.sprite)
