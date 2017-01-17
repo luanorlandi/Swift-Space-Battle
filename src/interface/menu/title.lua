@@ -1,6 +1,6 @@
 local deck = MOAIGfxQuad2D.new()
 deck:setTexture("texture/logo/title.png")
-deck:setRect(-315 * window.scale, -144.2 * window.scale, 315 * window.scale, 144.2 * window.scale)
+deck:setRect(-300 * window.scale, -150 * window.scale, 300 * window.scale, 150 * window.scale)
 
 Title = {}
 Title.__index = Title
