@@ -57,11 +57,9 @@ function GameOver:new(score)
 end
 
 function GameOver:checkSelection()
-	local cursorPos = Vector:new(input.pointerPos.x - window.width / 2, -(input.pointerPos.y - window.height / 2))
-	
 	local selection = false
 	
-	if self.yesBoxPos:pointInside(cursorPos) then
+	if self.yesBoxPos:pointInside(input.pointerPos) then
 		if self.textBoxSelected ~= "yes" then
 			if self.textBoxSelected == "no" then
 				self:removeSelection("no")
@@ -74,7 +72,7 @@ function GameOver:checkSelection()
 		
 		selection = true
 	else
-		if self.noBoxPos:pointInside(cursorPos) then
+		if self.noBoxPos:pointInside(input.pointerPos) then
 			if self.textBoxSelected ~= "no" then
 				if self.textBoxSelected == "yes" then
 					self:removeSelection("yes")

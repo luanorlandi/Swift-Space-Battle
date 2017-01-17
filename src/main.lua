@@ -24,9 +24,12 @@ require "input/input"
 
 input = Input:new()
 
-input:keyboard()
-input:mouse()
-input:touch()
+if MOAIEnvironment.osBrand == "Windows" then
+    input:tryEnableKeyboard()
+end
+
+input:tryEnableMouse()
+input:tryEnableTouch()
 
 local timeThread = MOAICoroutine.new()
 timeThread:run(getTime)

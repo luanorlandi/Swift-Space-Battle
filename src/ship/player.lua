@@ -68,18 +68,42 @@ end
 function Player:move()
 	if self.spawned then
 		-- define acceleration
-		if input.left == true then self.acc.x = -self.maxAcc else self.acc.x = 0.0 end
-		if input.right == true then self.acc.x = self.maxAcc end
-		
-		-- rotate ship
-		if input.up == true and not self.rot:isActive() and self.aim.y == -1 then
-			self.rot = self.sprite:moveRot(180, 0.8)
-			self.aim.y = 1
+		if input.keyboard or input.touch then
+			-- keyboard or touch
+			if input.left == true then self.acc.x = -self.maxAcc else self.acc.x = 0.0 end
+			if input.right == true then self.acc.x = self.maxAcc end
+		else
+			-- mouse
+			if input.pointerPos.x < player.pos.x - deckSize.x then
+				self.acc.x = -self.maxAcc
+			elseif input.pointerPos.x > player.pos.x + deckSize.x then
+				self.acc.x = self.maxAcc
+			else
+				self.acc.x = 0.0
+			end
 		end
-		
-		if input.down == true and not self.rot:isActive() and self.aim.y == 1 then
-			self.rot = self.sprite:moveRot(180, 0.8)
-			self.aim.y = -1
+
+		-- rotate ship
+		if not self.rot:isActive() then
+			if input.keyboard or input.touch then
+				-- keyboard or touch
+				if input.up == true and self.aim.y == -1 then
+					self.rot = self.sprite:moveRot(180, 0.8)
+					self.aim.y = 1
+				elseif input.down == true and self.aim.y == 1 then
+					self.rot = self.sprite:moveRot(180, 0.8)
+					self.aim.y = -1
+				end
+			else
+				-- mouse
+				if input.pointerPos.y > player.pos.y and self.aim.y == -1 then
+					self.rot = self.sprite:moveRot(180, 0.8)
+					self.aim.y = 1
+				elseif input.pointerPos.y < player.pos.y and self.aim.y == 1 then
+					self.rot = self.sprite:moveRot(180, 0.8)
+					self.aim.y = -1
+				end
+			end
 		end
 	else
 		self.acc.x = 0
@@ -91,10 +115,22 @@ end
 
 function Player:shoot()
 	if self.spawned then
-		if input.up == true and self.aim.y == 1 or
-			input.down == true and self.aim.y == -1 then
-			
-			Ship.shoot(self, playerShots)
+		if input.keyboard or input.touch then
+			-- keyboard or touch
+			if input.up == true and self.aim.y == 1 or
+				input.down == true and self.aim.y == -1 then
+				
+				Ship.shoot(self, playerShots)
+			end
+		else
+			-- mouse
+			if input.pointerPressed then
+				if input.pointerPos.y > player.pos.y and self.aim.y == 1 or
+					input.pointerPos.y < player.pos.y and self.aim.y == -1 then
+
+					Ship.shoot(self, playerShots)
+				end
+			end
 		end
 	end
 end

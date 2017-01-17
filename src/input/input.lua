@@ -8,6 +8,10 @@ Input.__index = Input
 function Input:new()
 	I = {}
 	setmetatable(I, Input)
+
+	I.keyboard = false
+	I.mouse = false
+	I.touch = false
 	
 	I.up = false
 	I.down = false
@@ -20,21 +24,27 @@ function Input:new()
 	return I
 end
 
-function Input:keyboard()
+function Input:tryEnableKeyboard()
 	if MOAIInputMgr.device.keyboard then
+		self.keyboard = true
+
 		MOAIInputMgr.device.keyboard:setCallback(onKeyboardEvent)
 	end
 end
 
-function Input:mouse()
+function Input:tryEnableMouse()
 	if MOAIInputMgr.device.pointer then
+		self.mouse = true
+
 		MOAIInputMgr.device.pointer:setCallback(onPointerEvent)
 		MOAIInputMgr.device.mouseLeft:setCallback(onMouseLeftEvent)
 	end
 end
 
-function Input:touch()
+function Input:tryEnableTouch()
 	if MOAIInputMgr.device.touch then
+		self.touch = true
+
 		MOAIInputMgr.device.touch:setCallback(onTouchEvent)
 	end
 end

@@ -18,16 +18,12 @@ function MenuData:new()
 end
 
 function MenuData:checkSelection()
-	-- coloca a origem do cursor como sendo o centro da janela
-	-- put the cursor origin as the window center
-	local cursorPos = Vector:new(input.pointerPos.x - window.width / 2, -(input.pointerPos.y - window.height / 2))
-	
 	local selection = false
 	local i = 1
 	
-	-- procura em cada caixa de texto qual esta sendo selecionada
+	-- search in each label box which one is selected
 	while i <= table.getn(self.textBoxPos) and not selection do
-		if self.textBoxPos[i]:pointInside(cursorPos) then
+		if self.textBoxPos[i]:pointInside(input.pointerPos) then
 			if i ~= self.textBoxSelected then
 				if self.textBoxSelected ~= 0 then
 					interface.textTable[self.textBoxSelected]:removeSelection()
@@ -55,7 +51,6 @@ function MenuData:checkPressed()
 	if input.pointerPressed then
 		input.pointerPressed = false
 		
-		-- checa se tem algo selecionado
 		-- check if there is something selected
 		if self.textBoxSelected ~= 0 then
 			-- make the menu function selected
