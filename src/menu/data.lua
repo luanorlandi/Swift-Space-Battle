@@ -20,22 +20,27 @@ end
 function MenuData:checkSelection()
 	local selection = false
 	local i = 1
+
+	if MOAIEnvironment.osBrand ~= "Android" or input.pointerPressed then
 	
-	-- search in each label box which one is selected
-	while i <= table.getn(self.textBoxPos) and not selection do
-		if self.textBoxPos[i]:pointInside(input.pointerPos) then
-			if i ~= self.textBoxSelected then
-				if self.textBoxSelected ~= 0 then
-					interface.textTable[self.textBoxSelected]:removeSelection()
+		-- search in each label box which one is selected
+		while i <= table.getn(self.textBoxPos) and not selection do
+		
+			if self.textBoxPos[i]:pointInside(input.pointerPos) then
+
+				if i ~= self.textBoxSelected then
+					if self.textBoxSelected ~= 0 then
+						interface.textTable[self.textBoxSelected]:removeSelection()
+					end
+					
+					self.textBoxSelected = i
+					interface.textTable[self.textBoxSelected]:selection()
 				end
 				
-				self.textBoxSelected = i
-				interface.textTable[self.textBoxSelected]:selection()
+				selection = true
+			else
+				i = i + 1
 			end
-			
-			selection = true
-		else
-			i = i + 1
 		end
 	end
 	
@@ -48,9 +53,9 @@ end
 
 function MenuData:checkPressed()
 	-- check if any click/tap happened
-	if input.pointerPressed then
-		input.pointerPressed = false
-		
+	if input.pointerReleased then
+		input.pointerReleased = false
+
 		-- check if there is something selected
 		if self.textBoxSelected ~= 0 then
 			-- make the menu function selected

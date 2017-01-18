@@ -32,13 +32,13 @@ end
 function MenuText:selection()
 	-- make the animation of selecting this a option
 	if self.selectable then
-		self.text:seekColor(1, 0, 0, 1, MOAIEaseType.EASE_IN)
+		self.text:seekColor(1, 0, 0, 1, 0, MOAIEaseType.FLAT)
 	end
 end
 
 function MenuText:removeSelection()
 	if self.selectable then
-		self.text:seekColor(1, 1, 1, 1, MOAIEaseType.EASE_IN)
+		self.text:seekColor(1, 1, 1, 1, 0, MOAIEaseType.FLAT)
 	end
 end
 

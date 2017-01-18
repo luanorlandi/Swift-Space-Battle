@@ -59,6 +59,7 @@ function onTouchEvent(event, idx, x, y, tapCount)
 
 	if event == MOAITouchSensor.TOUCH_DOWN then
 		input.pointerPressed = true
+		input.pointerReleased = false
 		touches[idx] = Vector:new(x, y)
 
 		if up then
@@ -78,6 +79,7 @@ function onTouchEvent(event, idx, x, y, tapCount)
 	
 	if event == MOAITouchSensor.TOUCH_UP then
 		input.pointerPressed = false
+		input.pointerReleased = true
 
 		if touches[idx] ~= nil then
 			if touches[idx] == "up" then input.up = false

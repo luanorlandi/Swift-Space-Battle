@@ -20,6 +20,7 @@ function Input:new()
 	
 	I.pointerPos = Vector:new(0, 0)
 	I.pointerPressed = false
+	I.pointerReleased = false
 	
 	return I
 end

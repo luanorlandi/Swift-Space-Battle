@@ -95,8 +95,8 @@ function GameOver:checkSelection()
 end
 
 function GameOver:checkPressed()
-	if input.pointerPressed then
-		input.pointerPressed = false
+	if input.pointerReleased then
+		input.pointerReleased = false
 		
 		if self.textBoxSelected ~= nil then
 			if self.textBoxSelected == "yes" then
@@ -112,17 +112,17 @@ end
 
 function GameOver:selection(text)
 	if text == "yes" then
-		self.yesText.text:seekColor(1, 0, 0, 1, MOAIEaseType.EASE_IN)
+		self.yesText.text:seekColor(1, 0, 0, 1, 0, MOAIEaseType.FLAT)
 	else
-		self.noText.text:seekColor(1, 0, 0, 1, MOAIEaseType.EASE_IN)
+		self.noText.text:seekColor(1, 0, 0, 1, 0, MOAIEaseType.FLAT)
 	end
 end
 
 function GameOver:removeSelection(text)
 	if text == "yes" then
-		self.yesText.text:seekColor(1, 1, 1, 1, MOAIEaseType.EASE_IN)
+		self.yesText.text:seekColor(1, 1, 1, 1, 0, MOAIEaseType.FLAT)
 	else
-		self.noText.text:seekColor(1, 1, 1, 1, MOAIEaseType.EASE_IN)
+		self.noText.text:seekColor(1, 1, 1, 1, 0, MOAIEaseType.FLAT)
 	end
 end
 

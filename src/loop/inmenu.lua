@@ -10,7 +10,7 @@ function menuLoop()
 	while menuData.active do
 		coroutine.yield()
 		
-		menuData:checkSelection()
 		menuData:checkPressed()
+		menuData:checkSelection()
 	end
 end
