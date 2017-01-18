@@ -91,3 +91,15 @@ function onTouchEvent(event, idx, x, y, tapCount)
 		touches[idx] = nil
 	end
 end
+
+function onBackButtonPressed()
+	input.cancel = true
+
+	-- return true to override the back button press and prevent
+	-- the system from handling it
+	if playerData ~= nil then
+		return true
+	else 
+		return false
+	end
+end

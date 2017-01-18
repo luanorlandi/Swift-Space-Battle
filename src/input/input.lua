@@ -17,6 +17,8 @@ function Input:new()
 	I.down = false
 	I.left = false
 	I.right = false
+
+	I.cancel = false
 	
 	I.pointerPos = Vector:new(0, 0)
 	I.pointerPressed = false
@@ -47,5 +49,6 @@ function Input:tryEnableTouch()
 		self.touch = true
 
 		MOAIInputMgr.device.touch:setCallback(onTouchEvent)
+		MOAIAppAndroid.setListener(MOAIAppAndroid.BACK_BUTTON_PRESSED, onBackButtonPressed)
 	end
 end

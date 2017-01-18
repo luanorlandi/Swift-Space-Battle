@@ -34,6 +34,8 @@ function gameLoop()
 	deadShips = {}
 
 	playerData.active = true
+
+	input.cancel = false
 	
 	while playerData.active do
 		coroutine.yield()
@@ -55,6 +57,12 @@ function gameLoop()
 		if interface.gameOver ~= nil then
 			interface.gameOver:checkSelection()
 			interface.gameOver:checkPressed()
+		end
+
+		if input.cancel then
+			input.cancel = false
+			
+			playerData:backToMenu()
 		end
 	end
 end

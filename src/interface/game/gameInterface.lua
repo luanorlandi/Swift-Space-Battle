@@ -66,7 +66,10 @@ function GameInterface:clear()
 	self.lives:clear()
 	self.score:clear()
 	self.combo:clear()
-	self.gameOver:clear()
+
+	if self.gameOver ~= nil then
+		self.gameOver:clear()
+	end
 	
 	for i = 1, table.getn(self.scoreAnimTable), 1 do
 		self.scoreAnimTable[i]:clear()
