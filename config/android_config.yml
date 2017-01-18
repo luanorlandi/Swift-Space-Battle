@@ -41,10 +41,10 @@ extensions:
      playservices: no
 
 icon:
-    ldpi:
-    mdpi:
-    hdpi:
-    xhdpi:
+    ldpi: icon\ic_launcher_ldpi.png
+    mdpi: icon\ic_launcher_mdpi.png
+    hdpi: icon\ic_launcher_hdpi.png
+    xhdpi: icon\ic_launcher_xhdpi.png
 
 run: 
     - main.lua

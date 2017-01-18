@@ -1,6 +1,6 @@
 local lifeIconSize = Vector:new(30 * window.scale, 30 * window.scale)
 local lifeIcon = MOAIGfxQuad2D.new()
-lifeIcon:setTexture("texture/ship/ship5.png")
+lifeIcon:setTexture("texture/ship/ship5life.png")
 lifeIcon:setRect(-lifeIconSize.x, -lifeIconSize.y, lifeIconSize.x, lifeIconSize.y)
 
 Lives = {}
