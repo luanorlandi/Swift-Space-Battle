@@ -32,9 +32,9 @@ function Background:new()
 	B.spriteGlow:setBlendMode(MOAIProp.GL_SRC_ALPHA,
 		MOAIProp.GL_ONE_MINUS_SRC_ALPHA)
 
-	B.spriteGlow:setColor(0.05, 0.05, 0.05, 1)
-	B.spriteGlow:seekColor(1, 1, 1, 1, 6.0)
-	B.spriteGlow:seekColor(1, 1, 1, 0, 10.0)
+	B.spriteGlow:setColor(0.05, 0.05, 0.05, 1) -- start dark
+	B.spriteGlow:seekColor(1, 1, 1, 1, 5.0, MOAIEaseType.SOFT_EASE_OUT)
+	B.spriteGlow:seekColor(1, 1, 1, 0, 10.0, MOAIEaseType.SOFT_EASE_OUT)
 
 	window.layer:insertProp(B.sprite)
 	window.layer:insertProp(B.spriteGlow)
