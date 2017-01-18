@@ -29,6 +29,9 @@ end
 function BorderHp:showBorderHp()
 	self.sprite:setBlendMode(MOAIProp.GL_SRC_ALPHA, MOAIProp.GL_ONE_MINUS_SRC_ALPHA)
 
+	-- start invisible
+	self.sprite:setColor(1, 1, 1, 0)
+
 	while self.active do
 		coroutine.yield()
 		

@@ -65,4 +65,6 @@ function gameLoop()
 			playerData:backToMenu()
 		end
 	end
+
+	playerData = nil
 end

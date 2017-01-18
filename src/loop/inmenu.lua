@@ -13,6 +13,4 @@ function menuLoop()
 		menuData:checkPressed()
 		menuData:checkSelection()
 	end
-
-	input.cancel = false
 end
