@@ -2,11 +2,11 @@ require "effect/blend"
 
 local deckLua = MOAIGfxQuad2D.new()
 deckLua:setTexture("texture/logo/lua.png")
-deckLua:setRect(-window.width/2, -window.height/2, window.width/2, window.height/2)
+deckLua:setRect(-window.scale * 200, -window.scale * 200, window.scale * 200, window.scale * 200)
 
 local deckMOAI = MOAIGfxQuad2D.new()
 deckMOAI:setTexture("texture/logo/moai.png")
-deckMOAI:setRect(-window.width/2, -window.height/2, window.width/2, window.height/2)
+deckMOAI:setRect(-window.scale * 250, -window.scale * 250, window.scale * 250, window.scale * 250)
 
 local whiteScreen = MOAIGfxQuad2D.new()
 whiteScreen:setTexture("texture/effect/whitescreen.png")
