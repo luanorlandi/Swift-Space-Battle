@@ -6,7 +6,7 @@ modules:
   EXPAT: false
   FREETYPE: true
   JSON: true
-  JPG: false
+  JPG: true
   LUAEXT: false
   MONGOOSE: false
   OGG: false
