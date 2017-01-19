@@ -69,7 +69,7 @@ function MenuData:createMainMenu()
 	self:clearMenu()
 	
 	if(MOAIEnvironment.osBrand == "Windows") then
-		texts = {}		-- has the menu strings
+		local texts = {}		-- has the menu strings
 		table.insert(texts, strings.menu.play)
 		table.insert(texts, strings.menu.score)
 		table.insert(texts, strings.menu.options)
@@ -93,9 +93,10 @@ function MenuData:createMainMenu()
 		table.insert(self.menuFunction, function() self:exitGame() end)
 
 	elseif(MOAIEnvironment.osBrand == "Android") then
-		texts = {}		-- has the menu strings
+		local texts = {}		-- has the menu strings
 		table.insert(texts, strings.menu.play)
 		table.insert(texts, strings.menu.score)
+		table.insert(texts, strings.menu.options)
 		table.insert(texts, strings.menu.about)
 		table.insert(texts, strings.menu.quit)
 		
@@ -103,11 +104,12 @@ function MenuData:createMainMenu()
 		interface:createMenu(texts)
 		
 		-- create the label boxes to allow selection
-		self:createBoxesMenu(4)
+		self:createBoxesMenu(5)
 		
 		-- define what each menu item will do
 		table.insert(self.menuFunction, function() self:newGame() end)
 		table.insert(self.menuFunction, function() self:createScoreMenu() end)
+		table.insert(self.menuFunction, function() self:createOptionsMenu() end)
 		table.insert(self.menuFunction, function()
 			if(MOAIBrowserAndroid.canOpenURL(strings.url)) then
 				MOAIBrowserAndroid.openURL(strings.url)
@@ -117,19 +119,21 @@ function MenuData:createMainMenu()
 		table.insert(self.menuFunction, function() self:exitGame() end)
 
 	else	-- probably html host
-		texts = {}		-- has the menu strings
+		local texts = {}		-- has the menu strings
 		table.insert(texts, strings.menu.play)
 		table.insert(texts, strings.menu.score)
+		table.insert(texts, strings.menu.options)
 		
 		-- create a new menu
 		interface:createMenu(texts)
 		
 		-- create the label boxes to allow selection
-		self:createBoxesMenu(2)
+		self:createBoxesMenu(3)
 		
 		-- define what each menu item will do
 		table.insert(self.menuFunction, function() self:newGame() end)
 		table.insert(self.menuFunction, function() self:createScoreMenu() end)
+		table.insert(self.menuFunction, function() self:createOptionsMenu() end)
 	end
 end
 
@@ -138,7 +142,7 @@ function MenuData:createScoreMenu()
 	
 	local score = readScoreFile()
 	
-	texts = {}
+	local texts = {}
 	table.insert(texts, score)
 	table.insert(texts, strings.menu.back)
 	
@@ -155,19 +159,34 @@ end
 function MenuData:createOptionsMenu()
 	self:clearMenu()
 	
-	local width = math.floor(window.width)
-	local height = math.floor(window.height)
+	if MOAIEnvironment.osBrand == "Windows" then
+		local width = math.floor(window.width)
+		local height = math.floor(window.height)
 
-	texts = {}
-	table.insert(texts, strings.menu.resolution .. " (" .. width .. "x" .. height .. ")")
-	table.insert(texts, strings.menu.back)
-	
-	interface:createMenu(texts)
-	
-	self:createBoxesMenu(2)
-	
-	table.insert(self.menuFunction, function() self:createResolutionsMenu() end)
-	table.insert(self.menuFunction, function() self:createMainMenu() end)
+		local texts = {}
+		table.insert(texts, strings.menu.resolution .. " (" .. width .. "x" .. height .. ")")
+		table.insert(texts, strings.menu.language)
+		table.insert(texts, strings.menu.back)
+		
+		interface:createMenu(texts)
+		
+		self:createBoxesMenu(3)
+		
+		table.insert(self.menuFunction, function() self:createResolutionsMenu() end)
+		table.insert(self.menuFunction, function() self:createLanguagesMenu() end)
+		table.insert(self.menuFunction, function() self:createMainMenu() end)
+	else
+		local texts = {}
+		table.insert(texts, strings.menu.language)
+		table.insert(texts, strings.menu.back)
+		
+		interface:createMenu(texts)
+		
+		self:createBoxesMenu(2)
+		
+		table.insert(self.menuFunction, function() self:createLanguagesMenu() end)
+		table.insert(self.menuFunction, function() self:createMainMenu() end)
+	end
 end
 
 function MenuData:createResolutionsMenu()
@@ -197,6 +216,30 @@ function MenuData:createResolutionsMenu()
 	self:createBoxesMenu(table.getn(resolutionsTexts))
 	
 	interface:createMenu(resolutionsTexts)
+end
+
+function MenuData:createLanguagesMenu()
+	self:clearMenu()
+	
+	-- table with all label that appears in the menu
+	local languagesTexts = {}
+	
+	for key, value in pairs(language) do
+		table.insert(self.menuFunction, function()
+			writeLanguageFile(key)		-- save ISO
+			changeLanguage(key)
+			self:createOptionsMenu()
+		end)
+		
+		table.insert(languagesTexts, language[key].name)
+	end
+	
+	-- include the return button at the end
+	table.insert(self.menuFunction, function() self:createOptionsMenu() end)
+	table.insert(languagesTexts, strings.menu.back)
+	
+	self:createBoxesMenu(table.getn(languagesTexts))
+	interface:createMenu(languagesTexts)
 end
 
 function MenuData:createBoxesMenu(n)

@@ -1,4 +1,6 @@
 language["en"] = {
+    name = "ENGLISH",
+
     menu = {
         play = "PLAY",
         score = "HIGHEST SCORE",
@@ -6,7 +8,8 @@ language["en"] = {
         about = "ABOUT",
         quit = "QUIT",
         back = "BACK",
-        resolution = "RESOLUTION"
+        resolution = "RESOLUTION",
+        language = "LANGUAGE"
     },
 
     game = {

@@ -5,7 +5,7 @@ require "file/pt"
 
 function readLanguageFile()
 	local path = locateSaveLocation()
-    
+
 	-- probably a unexpected host (like html)
 	if path == nil then
 		return nil
@@ -36,6 +36,13 @@ function writeLanguageFile(lang)
 		file:write(lang)
 		io.close(file)
 	end
+end
+
+function changeLanguage(lang)
+    if language[lang] ~= nil then
+        strings = language[lang]
+        strings.url = "https://github.com/luanorlandi/Swift-Space-Battle"
+    end
 end
 
 -- set current language
