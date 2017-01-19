@@ -70,37 +70,11 @@ function MenuData:createMainMenu()
 	
 	if(MOAIEnvironment.osBrand == "Windows") then
 		texts = {}		-- has the menu strings
-		table.insert(texts, "Novo Jogo")
-		table.insert(texts, "Como Jogar")
-		table.insert(texts, "Maior Pontuação")
-		table.insert(texts, "Opções")
-		table.insert(texts, "Sobre o jogo")
-		table.insert(texts, "Sair")
-		
-		-- create a new menu
-		interface:createMenu(texts)
-		
-		-- create the label boxes to allow selection
-		self:createBoxesMenu(6)
-		
-		-- define what each menu item will do
-		table.insert(self.menuFunction, function() self:newGame() end)
-		table.insert(self.menuFunction, function() self:createHowToPlayMenu() end)
-		table.insert(self.menuFunction, function() self:createScoreMenu() end)
-		table.insert(self.menuFunction, function() self:createOptionsMenu() end)
-		table.insert(self.menuFunction, function()
-			print(os.execute("start " .. "https://github.com/luanorlandi/Swift-Space-Battle"))
-		end)
-
-		table.insert(self.menuFunction, function() self:exitGame() end)
-
-	elseif(MOAIEnvironment.osBrand == "Android") then
-		texts = {}		-- has the menu strings
-		table.insert(texts, "Novo Jogo")
-		table.insert(texts, "Como Jogar")
-		table.insert(texts, "Maior Pontuação")
-		table.insert(texts, "Sobre o jogo")
-		table.insert(texts, "Sair")
+		table.insert(texts, strings.menu.play)
+		table.insert(texts, strings.menu.score)
+		table.insert(texts, strings.menu.options)
+		table.insert(texts, strings.menu.about)
+		table.insert(texts, strings.menu.quit)
 		
 		-- create a new menu
 		interface:createMenu(texts)
@@ -110,13 +84,33 @@ function MenuData:createMainMenu()
 		
 		-- define what each menu item will do
 		table.insert(self.menuFunction, function() self:newGame() end)
-		table.insert(self.menuFunction, function() self:createHowToPlayMenu() end)
+		table.insert(self.menuFunction, function() self:createScoreMenu() end)
+		table.insert(self.menuFunction, function() self:createOptionsMenu() end)
+		table.insert(self.menuFunction, function()
+			print(os.execute("start " .. strings.url))
+		end)
+
+		table.insert(self.menuFunction, function() self:exitGame() end)
+
+	elseif(MOAIEnvironment.osBrand == "Android") then
+		texts = {}		-- has the menu strings
+		table.insert(texts, strings.menu.play)
+		table.insert(texts, strings.menu.score)
+		table.insert(texts, strings.menu.about)
+		table.insert(texts, strings.menu.quit)
+		
+		-- create a new menu
+		interface:createMenu(texts)
+		
+		-- create the label boxes to allow selection
+		self:createBoxesMenu(4)
+		
+		-- define what each menu item will do
+		table.insert(self.menuFunction, function() self:newGame() end)
 		table.insert(self.menuFunction, function() self:createScoreMenu() end)
 		table.insert(self.menuFunction, function()
-			local url = "https://github.com/luanorlandi/Swift-Space-Battle"
-			
-			if(MOAIBrowserAndroid.canOpenURL(url)) then
-				MOAIBrowserAndroid.openURL(url)
+			if(MOAIBrowserAndroid.canOpenURL(strings.url)) then
+				MOAIBrowserAndroid.openURL(strings.url)
 			end
 		end)
 
@@ -124,19 +118,17 @@ function MenuData:createMainMenu()
 
 	else	-- probably html host
 		texts = {}		-- has the menu strings
-		table.insert(texts, "Novo Jogo")
-		table.insert(texts, "Como Jogar")
-		table.insert(texts, "Maior Pontuação")
+		table.insert(texts, strings.menu.play)
+		table.insert(texts, strings.menu.score)
 		
 		-- create a new menu
 		interface:createMenu(texts)
 		
 		-- create the label boxes to allow selection
-		self:createBoxesMenu(3)
+		self:createBoxesMenu(2)
 		
 		-- define what each menu item will do
 		table.insert(self.menuFunction, function() self:newGame() end)
-		table.insert(self.menuFunction, function() self:createHowToPlayMenu() end)
 		table.insert(self.menuFunction, function() self:createScoreMenu() end)
 	end
 end
@@ -147,8 +139,8 @@ function MenuData:createScoreMenu()
 	local score = readScoreFile()
 	
 	texts = {}
-	table.insert(texts, score .. " pontos")
-	table.insert(texts, "Voltar")
+	table.insert(texts, score)
+	table.insert(texts, strings.menu.back)
 	
 	interface:createMenu(texts)
 	
@@ -167,17 +159,13 @@ function MenuData:createOptionsMenu()
 	local height = math.floor(window.height)
 
 	texts = {}
-	table.insert(texts, "Reinicie para aplicar alterações")
-	table.insert(texts, "Resolução (atual " .. width .. "x" .. height .. ")")
-	table.insert(texts, "Voltar")
+	table.insert(texts, strings.menu.resolution .. " (" .. width .. "x" .. height .. ")")
+	table.insert(texts, strings.menu.back)
 	
 	interface:createMenu(texts)
 	
-	interface.textTable[1].selectable = false
+	self:createBoxesMenu(2)
 	
-	self:createBoxesMenu(3)
-	
-	table.insert(self.menuFunction, function()  end)
 	table.insert(self.menuFunction, function() self:createResolutionsMenu() end)
 	table.insert(self.menuFunction, function() self:createMainMenu() end)
 end
@@ -204,30 +192,11 @@ function MenuData:createResolutionsMenu()
 	
 	-- include the return button at the end
 	table.insert(self.menuFunction, function() self:createOptionsMenu() end)
-	table.insert(resolutionsTexts, "Voltar")
+	table.insert(resolutionsTexts, strings.menu.back)
 	
 	self:createBoxesMenu(table.getn(resolutionsTexts))
 	
 	interface:createMenu(resolutionsTexts)
-end
-
-function MenuData:createHowToPlayMenu()
-	self:clearMenu()
-	
-	texts = {}
-	table.insert(texts, "Ganhe pontos eliminando naves")
-	table.insert(texts, "Voltar")
-	
-	interface:createMenu(texts, -0.7 * window.height/2)
-	
-	interface.textTable[1].selectable = false
-	
-	self:createBoxesMenuCustomStart(-0.7 * window.height/2, 2)
-	
-	table.insert(self.menuFunction, function()  end)
-	table.insert(self.menuFunction, function() self:createMainMenu() end)
-	
-	interface:showHowToPlay()
 end
 
 function MenuData:createBoxesMenu(n)

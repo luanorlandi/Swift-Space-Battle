@@ -19,7 +19,7 @@ function GameOver:new(score)
 	
 	G.gap = 80 * window.scale
 
-	G.gameOverText = GameText:new("GAME OVER", gameOverFont, gameOverFontSize, Vector:new(0, 2 * G.gap))
+	G.gameOverText = GameText:new(strings.game.gameOver, gameOverFont, gameOverFontSize, Vector:new(0, 2 * G.gap))
 	G.gameOverText.text:setColor(1, 0, 0)
 	
 	-- if did not scored a new record, do not show a score label
@@ -29,14 +29,14 @@ function GameOver:new(score)
 	local textPos = 0
 	
 	if score ~= nil then
-		G.newRecordText = GameText:new("Novo recorde:", textFont, textFontSize, Vector:new(0, -textPos * G.gap))
+		G.newRecordText = GameText:new(strings.game.record, textFont, textFontSize, Vector:new(0, -textPos * G.gap))
 		textPos = textPos + 1
 		
-		G.highestScoreText = GameText:new(score .. " pontos", textFont, textFontSize, Vector:new(0, -textPos * G.gap))
+		G.highestScoreText = GameText:new(tostring(score), textFont, textFontSize, Vector:new(0, -textPos * G.gap))
 		textPos = textPos + 1
 	end
 	
-	G.playAgainText = GameText:new("Jogar novamente?", textFont, textFontSize, Vector:new(0, -textPos * G.gap))
+	G.playAgainText = GameText:new(strings.game.again, textFont, textFontSize, Vector:new(0, -textPos * G.gap))
 	textPos = textPos + 1
 	
 	local yesPos = Vector:new(0, -textPos * G.gap)
@@ -45,8 +45,8 @@ function GameOver:new(score)
 	local noPos = Vector:new(0, -textPos * G.gap)
 	textPos = textPos + 1
 	
-	G.yesText = GameText:new("Sim", textFont, textFontSize, yesPos)
-	G.noText = GameText:new("Nao", textFont, textFontSize, noPos)
+	G.yesText = GameText:new(strings.game.yesAnswer, textFont, textFontSize, yesPos)
+	G.noText = GameText:new(strings.game.noAnswer, textFont, textFontSize, noPos)
 	
 	G.yesBoxPos = Rectangle:new(yesPos, Vector:new(window.width / 2, textFontSize / 2))
 	G.noBoxPos = Rectangle:new(noPos, Vector:new(window.width / 2, textFontSize / 2))

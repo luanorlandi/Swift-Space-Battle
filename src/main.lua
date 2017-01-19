@@ -9,6 +9,8 @@ For more information, access https://github.com/luanorlandi/Swift-Space-Battle
 
 MOAILogMgr.setLogLevel(MOAILogMgr.LOG_NONE)
 
+require "file/saveLocation"
+require "file/strings"
 require "math/area"
 require "math/util"
 require "window/window"
