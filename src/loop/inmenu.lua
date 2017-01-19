@@ -9,8 +9,13 @@ function menuLoop()
 	
 	while menuData.active do
 		coroutine.yield()
-		
+
+		-- touch requires to be in this order		
 		menuData:checkPressed()
-		menuData:checkSelection()
+
+		-- prevent check in case of quit or new game started
+		if menuData.active then
+			menuData:checkSelection()
+		end
 	end
 end
