@@ -1,10 +1,21 @@
 require "interface/menu/menuInterface"
 require "menu/data"
 
+function menuDelay(delay)
+	local start = MOAISim.getElapsedTime()
+
+	while start + interface.delay > MOAISim.getElapsedTime() do
+		coroutine.yield()
+	end
+end
+
 function menuLoop()
 	interface = MenuInterface:new()
+
+	-- make delay before appear text
+	menuDelay(interface.delay)
+
 	local menuData = MenuData:new()
-	
 	menuData:createMainMenu()
 	
 	while menuData.active do

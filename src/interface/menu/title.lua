@@ -14,6 +14,9 @@ function Title:new(pos)
 	T.sprite:setDeck(deck)
 	
 	T.sprite:setLoc(pos.x, pos.y)
+	T.sprite:setBlendMode(MOAIProp.GL_SRC_ALPHA,
+		MOAIProp.GL_ONE_MINUS_SRC_ALPHA)
+	
 	window.layer:insertProp(T.sprite)
 	
 	return T

@@ -25,10 +25,12 @@ function MenuInterface:new()
 	M.textSize = textSize
 	M.textGap = 1.75 * M.textSize		-- space between labels
 	M.textStart = 50 * window.scale		-- first text position
+
+	M.delay = 2		-- seconds
 	
 	M.title = Title:new(Vector:new(0, M.textStart + 220 * window.scale))
-	
-	M.howToPlaySprite = nil
+	M.title.sprite:setColor(1, 1, 1, 0)
+	M.title.sprite:seekColor(1, 1, 1, 1, M.delay, MOAIEaseType.SOFT_EASE_OUT)
 	
 	return M
 end
@@ -51,28 +53,10 @@ function MenuInterface:createMenu(menuTable, start)
 	end
 end
 
-function MenuInterface:showHowToPlay()
-	-- show image with the controls of the ship
-
-	self.howToPlaySprite = MOAIProp2D.new()
-	changePriority(self.howToPlaySprite, "interface")
-	
-	self.howToPlaySprite:setDeck(howToPlayDeck)
-	
-	local pos = Vector:new(0, -0.25 * window.height/2)
-	
-	self.howToPlaySprite:setLoc(pos.x, pos.y)
-	window.layer:insertProp(self.howToPlaySprite)
-end
-
 function MenuInterface:clearMenu()
 	for i = 1, table.getn(self.textTable), 1 do
 		window.layer:removeProp(self.textTable[1].text)
 		table.remove(self.textTable, 1)
-	end
-	
-	if self.howToPlaySprite ~= nil then
-		window.layer:removeProp(self.howToPlaySprite)
 	end
 end
 
