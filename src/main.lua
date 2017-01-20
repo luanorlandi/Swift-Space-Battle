@@ -26,10 +26,7 @@ require "input/input"
 
 input = Input:new()
 
-if MOAIEnvironment.osBrand == "Windows" then
-    input:tryEnableKeyboard()
-end
-
+input:tryEnableKeyboard()
 input:tryEnableMouse()
 input:tryEnableTouch()
 

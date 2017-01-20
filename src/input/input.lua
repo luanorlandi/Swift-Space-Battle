@@ -18,6 +18,8 @@ function Input:new()
 	I.left = false
 	I.right = false
 
+	I.space = false
+
 	I.cancel = false
 	
 	I.pointerPos = Vector:new(0, 0)

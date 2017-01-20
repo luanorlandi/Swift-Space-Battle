@@ -68,12 +68,18 @@ end
 function Player:move()
 	if self.spawned then
 		-- define acceleration
-		if input.keyboard or input.touch then
-			-- keyboard or touch
-			if input.left == true then self.acc.x = -self.maxAcc else self.acc.x = 0.0 end
-			if input.right == true then self.acc.x = self.maxAcc end
+		if MOAIEnvironment.osBrand == "Windows" or
+			MOAIEnvironment.osBrand == "Android" then
+
+			if input.left == true then
+				self.acc.x = -self.maxAcc
+			elseif input.right == true then
+				self.acc.x =  self.maxAcc
+			else
+				self.acc.x = 0.0
+			end
 		else
-			-- mouse
+			-- probably html host
 			if input.pointerPos.x < player.pos.x - deckSize.x then
 				self.acc.x = -self.maxAcc
 			elseif input.pointerPos.x > player.pos.x + deckSize.x then
@@ -85,8 +91,10 @@ function Player:move()
 
 		-- rotate ship
 		if not self.rot:isActive() then
-			if input.keyboard or input.touch then
-				-- keyboard or touch
+		-- define acceleration
+			if MOAIEnvironment.osBrand == "Windows" or
+				MOAIEnvironment.osBrand == "Android" then
+
 				if input.up == true and self.aim.y == -1 then
 					self.rot = self.sprite:moveRot(180, 0.8)
 					self.aim.y = 1
@@ -95,7 +103,7 @@ function Player:move()
 					self.aim.y = -1
 				end
 			else
-				-- mouse
+				-- probably html host
 				if input.pointerPos.y > player.pos.y and self.aim.y == -1 then
 					self.rot = self.sprite:moveRot(180, 0.8)
 					self.aim.y = 1
@@ -115,22 +123,18 @@ end
 
 function Player:shoot()
 	if self.spawned then
-		if input.keyboard or input.touch then
-			-- keyboard or touch
-			if input.up == true and self.aim.y == 1 or
-				input.down == true and self.aim.y == -1 then
+		if MOAIEnvironment.osBrand == "Windows" or
+			MOAIEnvironment.osBrand == "Android" then
+
+			if (input.up == true and self.aim.y == 1) or
+				(input.down == true and self.aim.y == -1) or
+				input.space then
 				
 				Ship.shoot(self, playerShots)
 			end
-		else
-			-- mouse
-			if input.pointerPressed then
-				if input.pointerPos.y > player.pos.y and self.aim.y == 1 or
-					input.pointerPos.y < player.pos.y and self.aim.y == -1 then
-
-					Ship.shoot(self, playerShots)
-				end
-			end
+		elseif input.pointerPressed or input.space then
+			-- probably html host
+			Ship.shoot(self, playerShots)
 		end
 	end
 end
