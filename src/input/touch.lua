@@ -1,4 +1,4 @@
-local borderSize = window.height/12
+local borderSize = 65 * window.scale
 local cUp = Vector:new(0, (window.height/2 + borderSize) / 2)
 local dUp = Vector:new(window.width/2, (window.height/2 - borderSize) / 2)
 

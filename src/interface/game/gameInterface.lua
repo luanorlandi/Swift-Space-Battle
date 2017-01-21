@@ -3,6 +3,7 @@ require "interface/game/lives"
 require "interface/game/borderHp"
 require "interface/game/scoreText"
 require "interface/game/gameOver"
+require "interface/game/buttons"
 
 GameInterface = {}
 GameInterface.__index = GameInterface
@@ -35,6 +36,9 @@ function GameInterface:new(lives)
 	G.scoreEarnedPos = Vector:new(window.width/2 - 0.55 * window.width/2, window.height/2 - 0.30 * window.width/2)
 	
 	G.scoreAnimTable = {}
+
+	G.buttons = Buttons:new()
+	G.buttons:showButtons()
 	
 	G.gameOver = nil
 	
@@ -66,6 +70,7 @@ function GameInterface:clear()
 	self.lives:clear()
 	self.score:clear()
 	self.combo:clear()
+	self.buttons:clear()
 
 	if self.gameOver ~= nil then
 		self.gameOver:clear()

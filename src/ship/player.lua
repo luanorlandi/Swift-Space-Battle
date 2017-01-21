@@ -98,9 +98,13 @@ function Player:move()
 				if input.up == true and self.aim.y == -1 then
 					self.rot = self.sprite:moveRot(180, 0.8)
 					self.aim.y = 1
+
+					interface.buttons:androidChangeSprite(self.aim.y)
 				elseif input.down == true and self.aim.y == 1 then
 					self.rot = self.sprite:moveRot(180, 0.8)
 					self.aim.y = -1
+
+					interface.buttons:androidChangeSprite(self.aim.y)
 				end
 			else
 				-- probably html host

@@ -6,11 +6,6 @@ local textSize = math.floor(45 * window.scale)
 local menuFont = MOAIFont.new()
 menuFont:loadFromTTF("font//zekton free.ttf", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-ãõç", textSize, 72)
 
-local howToPlaySize = Vector:new(0.7 * window.width/2, 0.7 * window.width/2)
-local howToPlayDeck = MOAIGfxQuad2D.new()
-howToPlayDeck:setTexture("texture/others/howToPlay.png")
-howToPlayDeck:setRect(-howToPlaySize.x, -howToPlaySize.y, howToPlaySize.x, howToPlaySize.y)
-
 MenuInterface = {}
 MenuInterface.__index = MenuInterface
 
@@ -26,7 +21,7 @@ function MenuInterface:new()
 	M.textGap = 1.75 * M.textSize		-- space between labels
 	M.textStart = 50 * window.scale		-- first text position
 
-	M.delay = 2		-- seconds
+	M.delay = 2.0		-- seconds
 	
 	M.title = Title:new(Vector:new(0, M.textStart + 220 * window.scale))
 	M.title.sprite:setColor(1, 1, 1, 0)
