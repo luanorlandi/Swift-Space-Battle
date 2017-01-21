@@ -2,7 +2,7 @@ name: Swift Space Battle
 full_name: Swift Space Battle
 author: Luan Orlandi
 version_code: 100
-version_name: 1.1.0
+version_name: 1.2.0
 sdk:
   repository: https://github.com/moai/moai-dev.git
   ref: "1.5-stable"
