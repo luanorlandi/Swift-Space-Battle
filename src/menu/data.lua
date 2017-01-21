@@ -12,7 +12,7 @@ function MenuData:new()
 	
 	M.menuFunction = {}
 	
-	M.resolutionsAvailable = readListOfResolutionsFile()
+	M.resolutionsAvailable = readResolutionsFile()
 	
 	return M
 end
@@ -194,6 +194,10 @@ function MenuData:createResolutionsMenu()
 	
 	-- table with all label that appears in the menu
 	local resolutionsTexts = {}
+
+	-- label with no action
+	table.insert(self.menuFunction, function() end)
+	table.insert(resolutionsTexts, strings.menu.restart)
 	
 	for i = 1, table.getn(self.resolutionsAvailable), 1 do
 		
@@ -213,9 +217,13 @@ function MenuData:createResolutionsMenu()
 	table.insert(self.menuFunction, function() self:createOptionsMenu() end)
 	table.insert(resolutionsTexts, strings.menu.back)
 	
-	self:createBoxesMenu(table.getn(resolutionsTexts))
+	-- add 1 for the initial label of restart note
+	self:createBoxesMenu(1 + table.getn(resolutionsTexts))
 	
 	interface:createMenu(resolutionsTexts)
+
+	-- set the initial label of restart note to not be selectable
+	interface.textTable[1].selectable = false
 end
 
 function MenuData:createLanguagesMenu()

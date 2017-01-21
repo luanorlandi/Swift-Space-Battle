@@ -11,7 +11,7 @@ function readLanguageFile()
 		return nil
 	end
 
-	local file = io.open(path .. "\\language.lua", "r")
+	local file = io.open(path .. "/language.lua", "r")
 	local lang = nil
 
 	if file ~= nil then
@@ -30,7 +30,7 @@ function writeLanguageFile(lang)
 		return nil
 	end
 
-	local file = io.open(path .. "\\language.lua", "w")
+	local file = io.open(path .. "/language.lua", "w")
 	
 	if file ~= nil then
 		file:write(lang)

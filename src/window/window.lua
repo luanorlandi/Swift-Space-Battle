@@ -52,7 +52,14 @@ function Window:new()
 end
 
 function readResolutionFile()
-	local file = io.open("file/options.lua", "r")
+	local path = locateSaveLocation()
+
+	-- probably a unexpected host (like html)
+	if path == nil then
+		return nil
+	end
+
+	local file = io.open(path .. "/resolution.lua", "r")
 	
 	local resolution = Vector:new(0, 0)
 	
@@ -67,7 +74,14 @@ function readResolutionFile()
 end
 
 function writeResolutionFile(resolution)
-	local file = io.open("file/options.lua", "w")
+	local path = locateSaveLocation()
+
+	-- probably a unexpected host (like html)
+	if path == nil then
+		return nil
+	end
+
+	local file = io.open(path .. "/resolution.lua", "w")
 	
 	if file ~= nil then
 		file:write(resolution.x .. "\n")
@@ -77,8 +91,8 @@ function writeResolutionFile(resolution)
 	end
 end
 
-function readListOfResolutionsFile()
-	local file = io.open("file/listOfResolutions.lua", "r")
+function readResolutionsFile()
+	local file = io.open("file/resolutions.lua", "r")
 	
 	local resolutionsTable = {}
 

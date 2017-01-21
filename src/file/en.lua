@@ -9,7 +9,8 @@ language["en"] = {
         quit = "QUIT",
         back = "BACK",
         resolution = "RESOLUTION",
-        language = "LANGUAGE"
+        language = "LANGUAGE",
+        restart = "RESTART TO APPLY CHANGES"
     },
 
     game = {

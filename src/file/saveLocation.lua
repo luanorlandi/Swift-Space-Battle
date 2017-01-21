@@ -9,7 +9,7 @@ function locateSaveLocation()
 	local path = cache or document or resource or working
 
 	if MOAIEnvironment.osBrand == "Windows" and path ~= nil then
-		path = path .. "\\My Games\\swift-space-battle"
+		path = path .. "/My Games/swift-space-battle"
 
 		-- create a folder at 'path' if none exists
 		MOAIFileSystem.affirmPath(path)

@@ -114,7 +114,7 @@ function readScoreFile()
 		return highestScore
 	end
 
-	local file = io.open(path .. "\\score.lua", "r")
+	local file = io.open(path .. "/score.lua", "r")
 	
 	local score = 0
 	 
@@ -142,7 +142,7 @@ function writeScoreFile(score)
 		return nil
 	end
 
-	local file = io.open(path .. "\\score.lua", "w")
+	local file = io.open(path .. "/score.lua", "w")
 	
 	if file ~= nil then
 		file:write(score)
