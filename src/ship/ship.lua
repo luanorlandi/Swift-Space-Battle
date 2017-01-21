@@ -167,6 +167,10 @@ function Ship:destroy()
 		window.layer:removeProp(self.threadsSprites[1])
 		table.remove(self.threadsSprites, 1)
 	end
+
+	if self.name == "Player" then
+		
+	end
 end
 
 function Ship:spawnSize()

@@ -13,6 +13,10 @@ function PlayerData:new()
 	P.combo = 1
 	
 	P.alive = true
+
+	-- save ship aim
+	-- when use a life, will restore the same aim
+	P.aim = Vector:new(0, 1)	-- up
 	
 	return P
 end
@@ -32,6 +36,10 @@ function PlayerData:useLife()
 	self.lives = self.lives - 1
 	interface.lives:decrease()
 	player = Player:new(Vector:new(0, 0))
+
+	if self.aim.y == -1 then
+		player:rotateInstantly()
+	end
 end
 
 function PlayerData:gameOver()

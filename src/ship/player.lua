@@ -116,6 +116,12 @@ function Player:move()
 					self.aim.y = -1
 				end
 			end
+
+			-- copy aim
+			if playerData ~= nil then
+				playerData.aim.x = self.aim.x
+				playerData.aim.y = self.aim.y
+			end
 		end
 	else
 		self.acc.x = 0
@@ -123,6 +129,11 @@ function Player:move()
 	end
 	
 	Ship.move(self)
+end
+
+function Player:rotateInstantly()
+	self.sprite:moveRot(180, 0)
+	self.aim.y = -self.aim.y
 end
 
 function Player:shoot()
