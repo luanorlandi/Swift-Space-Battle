@@ -94,7 +94,7 @@ function Ship:move()
 	if self.acc.y == 0 and self.spd.y > 0 then self.acc.y = -self.dec end
 	if self.acc.y == 0 and self.spd.y < 0 then self.acc.y = self.dec end
 
-	-- chech if exceed maximum acceleration
+	-- check if exceed maximum acceleration
 	if self.acc:norm() > self.maxAcc then
 		self.acc:normalize()
 		self.acc.x = self.acc.x * self.maxAcc
@@ -108,7 +108,7 @@ function Ship:move()
 	if self.spd.x < self.minSpd and self.spd.x > -self.minSpd then self.spd.x = 0 end
 	if self.spd.y < self.minSpd and self.spd.y > -self.minSpd then self.spd.y = 0 end
 	
-	-- chech if exceed maximum speed
+	-- check if exceed maximum speed
 	if self.spd:norm() > self.maxSpd then
 		self.spd:normalize()
 		self.spd.x = self.spd.x * self.maxSpd

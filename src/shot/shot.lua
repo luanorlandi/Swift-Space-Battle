@@ -72,8 +72,11 @@ function shotsCheckCollision(shots, ship)
 	while s <= #shots and not hit do
 		local shot = shots[s]
 		
-		if shot.area:detectCollision(Vector:new(0, 1), shot.pos, ship.area, ship.aim, ship.pos) then
-		hit = true
+		if shot.area:detectCollision(
+			Vector:new(0, 1), shot.pos,
+			ship.area, ship.aim, ship.pos) then
+			
+			hit = true
 			ship:damaged(shot.dmg)
 			
 			Shot.destroy(shot)
