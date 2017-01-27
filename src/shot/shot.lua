@@ -39,7 +39,7 @@ end
 
 function shotsMove()
 	local s = 1
-	while s <= table.getn(playerShots) do
+	while s <= #playerShots do
 		playerShots[s]:move()
 		if not shotCheckDistant(playerShots, s) then
 			s = s + 1
@@ -47,7 +47,7 @@ function shotsMove()
 	end
 	
 	s = 1
-	while s <= table.getn(enemiesShots) do
+	while s <= #enemiesShots do
 		enemiesShots[s]:move()
 		if not shotCheckDistant(enemiesShots, s) then
 			s = s + 1
@@ -58,7 +58,7 @@ function shotsMove()
 		shotsCheckCollision(enemiesShots, player)
 	end
 
-	for i = 1, table.getn(enemies), 1 do
+	for i = 1, #enemies, 1 do
 		if not enemies[i].spawning and enemies[i].spawned then
 			shotsCheckCollision(playerShots, enemies[i])
 		end
@@ -69,7 +69,7 @@ function shotsCheckCollision(shots, ship)
 	local s = 1
 	local hit = false
 	
-	while s <= table.getn(shots) and not hit do
+	while s <= #shots and not hit do
 		local shot = shots[s]
 		
 		if shot.area:detectCollision(Vector:new(0, 1), shot.pos, ship.area, ship.aim, ship.pos) then
@@ -100,12 +100,12 @@ function shotCheckDistant(shots, s)
 end
 
 function shotsClear()
-	for i = 1, table.getn(playerShots), 1 do
+	for i = 1, #playerShots, 1 do
 		window.layer:removeProp(playerShots[1].sprite)
 		table.remove(playerShots, 1)
 	end
 	
-	for i = 1, table.getn(enemiesShots), 1 do
+	for i = 1, #enemiesShots, 1 do
 		window.layer:removeProp(enemiesShots[1].sprite)
 		table.remove(enemiesShots, 1)
 	end

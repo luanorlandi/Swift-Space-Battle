@@ -12,7 +12,7 @@ function resumeThreads()
 	
 	-- player
 	local i = 1
-	while i <= table.getn(player.threads) do
+	while i <= #player.threads do
 		coroutine.resume(player.threads[i])
 		if coroutine.status(player.threads[i]) ~= "dead" then
 			i = i + 1
@@ -23,7 +23,7 @@ function resumeThreads()
 
 	-- free allocated memory
 	i = 1
-	while i <= table.getn(player.threadsSprites) do
+	while i <= #player.threadsSprites do
 		if player.threadsSprites[i] == nil then
 			table.remove(player.threadsSprites, i)
 		else
@@ -32,9 +32,9 @@ function resumeThreads()
 	end
 	
 	-- enemies
-	for i = 1, table.getn(enemies), 1 do
+	for i = 1, #enemies, 1 do
 		local j = 1
-		while j <= table.getn(enemies[i].threads) do
+		while j <= #enemies[i].threads do
 			coroutine.resume(enemies[i].threads[j])
 			if coroutine.status(enemies[i].threads[j]) ~= "dead" then
 				j = j + 1
@@ -44,7 +44,7 @@ function resumeThreads()
 		end
 		
 		j = 1
-		while j <= table.getn(enemies[i].threadsSprites) do
+		while j <= #enemies[i].threadsSprites do
 			if enemies[i].threadsSprites[j] == nil then
 				table.remove(enemies[i].threadsSprites, j)
 			else
@@ -54,9 +54,9 @@ function resumeThreads()
 	end
 	
 	-- dead enemies
-	for i = 1, table.getn(deadShips), 1 do
+	for i = 1, #deadShips, 1 do
 		local j = 1
-		while j <= table.getn(deadShips[i].threads) do
+		while j <= #deadShips[i].threads do
 			coroutine.resume(deadShips[i].threads[j])
 			if coroutine.status(deadShips[i].threads[j]) ~= "dead" then
 				j = j + 1
@@ -66,7 +66,7 @@ function resumeThreads()
 		end
 		
 		j = 1
-		while j <= table.getn(deadShips[i].threadsSprites) do
+		while j <= #deadShips[i].threadsSprites do
 			if deadShips[i].threadsSprites[j] == nil then
 				table.remove(deadShips[i].threadsSprites, j)
 			else
@@ -77,7 +77,7 @@ function resumeThreads()
 	
 	-- interface
 	i = 1
-	while i <= table.getn(interface.threads) do
+	while i <= #interface.threads do
 		coroutine.resume(interface.threads[i])
 		if coroutine.status(interface.threads[i]) ~= "dead" then
 			i = i + 1

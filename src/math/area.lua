@@ -7,7 +7,7 @@ Area.__index = Area
 function Area:new(size)
 	local A = {}
 	setmetatable(A, Area)
-	
+
 	A.size = Rectangle:new(Vector:new(0, 0), Vector:new(size.x, size.y))
 	A.hitbox = {}
 	
@@ -30,11 +30,11 @@ function Area:detectCollision(orientationA, posA, b, orientationB, posB)
 	
 	if sizeA:intersection(sizeB) then
 		local i = 1
-		while not intersection and i <= table.getn(self.hitbox) do
+		while not intersection and i <= #self.hitbox do
 			local rectangleA = self.hitbox[i]:copy(orientationA, posA)
 			
 			local j = 1
-			while not intersection and j <= table.getn(b.hitbox) do
+			while not intersection and j <= #b.hitbox do
 				local rectangleB = b.hitbox[j]:copy(orientationB, posB)
 				
 				intersection = rectangleA:intersection(rectangleB)

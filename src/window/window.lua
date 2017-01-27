@@ -107,7 +107,7 @@ function readResolutionsFile()
 			if width ~= nil and height ~= nil then
 				table.insert(resolutionsTable, Vector:new(width, height))
 			end
-		until (width == nil and height == nil) or (table.getn(resolutionsTable) >= limit)
+		until (width == nil and height == nil) or (#resolutionsTable >= limit)
 		
 		io.close(file)
 	end

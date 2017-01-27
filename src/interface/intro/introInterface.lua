@@ -70,7 +70,7 @@ function Intro:loop()
 		coroutine.yield()
 	end
 		
-	for i = 1, table.getn(self.logos), 1 do
+	for i = 1, #self.logos, 1 do
 		coroutine.yield()
 		-- logo fade inn ------------------------------------
 		local blendThread = coroutine.create(function()
@@ -108,7 +108,7 @@ function Intro:loop()
 	end
 	
 	-- remove logos -------------------------------------
-	for i = 1, table.getn(self.logos), 1 do
+	for i = 1, #self.logos, 1 do
 		window.layer:removeProp(self.logos[1])
 		table.remove(self.logos, 1)
 	end
@@ -117,7 +117,7 @@ end
 function Intro:clear()
 	window.layer:removeProp(self.background)
 	
-	for i = 1, table.getn(self.logos), 1 do
+	for i = 1, #self.logos, 1 do
 		window.layer:removeProp(self.logos[1])
 		table.remove(self.logos, 1)
 	end

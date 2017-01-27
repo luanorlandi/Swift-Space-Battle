@@ -76,7 +76,7 @@ function GameInterface:clear()
 		self.gameOver:clear()
 	end
 	
-	for i = 1, table.getn(self.scoreAnimTable), 1 do
+	for i = 1, #self.scoreAnimTable, 1 do
 		self.scoreAnimTable[i]:clear()
 	end
 end

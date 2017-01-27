@@ -121,7 +121,7 @@ function EnemyType4:checkBlink()
 end
 
 function EnemyType4:shotClose()
-	for i = 1, table.getn(playerShots), 1 do
+	for i = 1, #playerShots, 1 do
 		if near(self.pos.y, playerShots[i].pos.y, self.blinkShotClose) then
 			if near(self.pos.x, playerShots[i].pos.x, self.shotRange) then
 				return true

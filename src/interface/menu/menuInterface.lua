@@ -40,7 +40,7 @@ function MenuInterface:createMenu(menuTable, start)
 		start = self.textStart
 	end
 
-	for i = 1, table.getn(menuTable), 1 do
+	for i = 1, #menuTable, 1 do
 		local pos = Vector:new(0, start - ((i-1) * self.textGap))
 		
 		local text = MenuText:new(menuTable[i], pos)
@@ -49,7 +49,7 @@ function MenuInterface:createMenu(menuTable, start)
 end
 
 function MenuInterface:clearMenu()
-	for i = 1, table.getn(self.textTable), 1 do
+	for i = 1, #self.textTable, 1 do
 		window.layer:removeProp(self.textTable[1].text)
 		table.remove(self.textTable, 1)
 	end

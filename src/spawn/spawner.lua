@@ -56,7 +56,7 @@ function Spawner:spawn()
 		self.total = self.total + 1
 		
 		-- define which ship will be created
-		local rand = math.random(1, table.getn(self.shipsAvailables))
+		local rand = math.random(1, #self.shipsAvailables)
 		local ship = self.shipsAvailables[rand]	-- get ship class
 		
 		-- define where the ship will be created
@@ -209,7 +209,7 @@ function Spawner:levelUp()
 	
 	self.limit = 3
 	
-	for i = 1, table.getn(self.shipsClass), 1 do
+	for i = 1, #self.shipsClass, 1 do
 		self.shipsClass[i]:increaseLimit(1)
 		self:insertShipClass(i, 1)
 	end

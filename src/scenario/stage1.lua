@@ -42,13 +42,13 @@ function Stage1:new()
 end
 
 function Stage1:move()
-	for i = 1, table.getn(self.scenarios), 1 do
+	for i = 1, #self.scenarios, 1 do
 		self.scenarios[i]:move()
 	end
 end
 
 function Stage1:clear()
-	for i = 1, table.getn(self.scenarios), 1 do
+	for i = 1, #self.scenarios, 1 do
 		self.scenarios[1]:clear()
 		table.remove(self.scenarios, 1)
 	end

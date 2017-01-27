@@ -24,7 +24,7 @@ function MenuData:checkSelection()
 	if MOAIEnvironment.osBrand ~= "Android" or input.pointerPressed then
 	
 		-- search in each label box which one is selected
-		while i <= table.getn(self.textBoxPos) and not selection do
+		while i <= #self.textBoxPos and not selection do
 		
 			if self.textBoxPos[i]:pointInside(input.pointerPos) then
 
@@ -199,7 +199,7 @@ function MenuData:createResolutionsMenu()
 	table.insert(self.menuFunction, function() end)
 	table.insert(resolutionsTexts, strings.menu.restart)
 	
-	for i = 1, table.getn(self.resolutionsAvailable), 1 do
+	for i = 1, #self.resolutionsAvailable, 1 do
 		
 		table.insert(self.menuFunction, function()
 			writeResolutionFile(self.resolutionsAvailable[i])
@@ -218,7 +218,7 @@ function MenuData:createResolutionsMenu()
 	table.insert(resolutionsTexts, strings.menu.back)
 	
 	-- add 1 for the initial label of restart note
-	self:createBoxesMenu(1 + table.getn(resolutionsTexts))
+	self:createBoxesMenu(1 + #resolutionsTexts)
 	
 	interface:createMenu(resolutionsTexts)
 
@@ -246,7 +246,7 @@ function MenuData:createLanguagesMenu()
 	table.insert(self.menuFunction, function() self:createOptionsMenu() end)
 	table.insert(languagesTexts, strings.menu.back)
 	
-	self:createBoxesMenu(table.getn(languagesTexts))
+	self:createBoxesMenu(#languagesTexts)
 	interface:createMenu(languagesTexts)
 end
 
@@ -293,11 +293,11 @@ function MenuData:clearMenu()
 	
 	self.textBoxSelected = 0
 	
-	for i = 1, table.getn(self.textBoxPos), 1 do
+	for i = 1, #self.textBoxPos, 1 do
 		table.remove(self.textBoxPos, 1)
 	end
 	
-	for i = 1, table.getn(self.menuFunction), 1 do
+	for i = 1, #self.menuFunction, 1 do
 		table.remove(self.menuFunction, 1)
 	end
 end

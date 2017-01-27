@@ -137,7 +137,7 @@ end
 
 function Ship:shoot(shots)
 	if not self.rot:isActive() and not self.spawning and self.spawned and gameTime - self.fireLast >= self.fireRate then
-		for i = 1, table.getn(self.wpn), 1 do
+		for i = 1, #self.wpn, 1 do
 			Ship.newShot(self, shots, self.wpn[i])
 		end
 		
@@ -163,7 +163,7 @@ function Ship:destroy()
 	window.layer:removeProp(self.sprite)
 	
 	-- remove all sprite effects created by his threads
-	for i = 1, table.getn(self.threadsSprites), 1 do
+	for i = 1, #self.threadsSprites, 1 do
 		window.layer:removeProp(self.threadsSprites[1])
 		table.remove(self.threadsSprites, 1)
 	end
@@ -224,7 +224,7 @@ end
 function Ship:muzzleflashType1()
 	local mf = {}
 	
-	for i = 1, table.getn(self.fla), 1 do
+	for i = 1, #self.fla, 1 do
 		local flash = MOAIProp2D.new()
 		changePriority(flash, "effect")
 		table.insert(self.threadsSprites, flash)
@@ -241,12 +241,12 @@ function Ship:muzzleflashType1()
 	
 	while gameTime - start < self.flaDuration do
 		coroutine.yield()
-		for i = 1, table.getn(mf), 1 do
+		for i = 1, #mf, 1 do
 			mf[i]:setLoc(self.pos.x + self.fla[i].x, self.pos.y + self.aim.y * self.fla[i].y)
 		end
 	end
 
-	while table.getn(mf) ~= 0 do
+	while #mf ~= 0 do
 		window.layer:removeProp(mf[1])
 		table.remove(mf, 1)
 	end
@@ -304,13 +304,13 @@ end
 function shipsMove()
 	player:move()
 	
-	for i = 1, table.getn(enemies), 1 do
+	for i = 1, #enemies, 1 do
 		enemies[i]:move()
 	end
 end
 
 function enemiesShoot()
-	for i = 1, table.getn(enemies), 1 do
+	for i = 1, #enemies, 1 do
 		enemies[i]:shoot()
 	end
 end
@@ -326,7 +326,7 @@ function shipsCheckStatus()
 
 	-- check if an enemy died
 	local e = 1
-	while e <= table.getn(enemies) do
+	while e <= #enemies do
 		local ship = enemies[e]
 		
 		if ship.status ~= "dead" then
@@ -351,7 +351,7 @@ function shipsCheckStatus()
 	
 	-- check if any enemy dead has exploded
 	local d = 1
-	while d <= table.getn(deadShips) do
+	while d <= #deadShips do
 		local ship = deadShips[d]
 		
 		if ship.destroy then
@@ -367,12 +367,12 @@ end
 function shipsClear()
 	Ship.destroy(player)
 	
-	for i = 1, table.getn(enemies), 1 do
+	for i = 1, #enemies, 1 do
 		Ship.destroy(enemies[1])
 		table.remove(enemies, 1)
 	end
 	
-	for i = 1, table.getn(deadShips), 1 do
+	for i = 1, #deadShips, 1 do
 		Ship.destroy(deadShips[1])
 		table.remove(deadShips, 1)
 	end

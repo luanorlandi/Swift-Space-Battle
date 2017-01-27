@@ -29,9 +29,9 @@ function Lives:new(qty)
 end
 
 function Lives:decrease()
-	if table.getn(self.icon) > 0 then
-		window.layer:removeProp(self.icon[table.getn(self.icon)])
-		table.remove(self.icon, table.getn(self.icon))
+	if #self.icon > 0 then
+		window.layer:removeProp(self.icon[#self.icon])
+		table.remove(self.icon, #self.icon)
 		self.qty = self.qty - 1
 	end
 end
@@ -44,7 +44,7 @@ function iconLifePos(n)
 end
 
 function Lives:clear()
-	for i = 1, table.getn(self.icon), 1 do
+	for i = 1, #self.icon, 1 do
 		window.layer:removeProp(self.icon[1])
 		table.remove(self.icon, 1)
 	end
