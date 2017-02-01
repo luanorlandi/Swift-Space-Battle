@@ -1,10 +1,9 @@
 # Files
 *.bat
-*.psd
 
 # Folders
-latex
-moai
+distribute
+build
 
 # Compiled Lua sources
 luac.out
