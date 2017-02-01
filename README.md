@@ -1,6 +1,6 @@
 # Swift Space Battle
 
-This is a game developed for mobile, browser and desktops.
+This is a game developed for mobile, browser and desktop.
 
 Check the [releases](https://github.com/luanorlandi/Swift-Space-Battle/releases) tab and the [html host](https://luanorlandi.github.io/Swift-Space-Battle/) here to play it.
 
@@ -18,10 +18,11 @@ There is also a portuguese pdf made at the end of the scientific research projec
 
 ## Credits
 
-- Project supported by [CNPq](http://cnpq.br/)
 - Development guided by Leandro Fiorini Aurichi
-- [MOAI game engine](http://getmoai.com/)
-- [Ship sprites](http://millionthvector.blogspot.com.br/)
+- Project supported by [CNPq](http://cnpq.br/)
+- Developed with [MOAI](http://getmoai.com/)
+- Builded with [MoaiCLI](http://halfnelson.github.io/moaicli/)
+- Ship sprites from [MillionthVector](http://millionthvector.blogspot.com.br/)
 
 ## License
 [GPLv3](https://github.com/luanorlandi/Swift-Space-Battle/blob/master/LICENSE)
