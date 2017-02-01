@@ -87,7 +87,7 @@ function MenuData:createMainMenu()
 		table.insert(self.menuFunction, function() self:createScoreMenu() end)
 		table.insert(self.menuFunction, function() self:createOptionsMenu() end)
 		table.insert(self.menuFunction, function()
-			print(os.execute("start " .. strings.url))
+			os.execute("start " .. strings.url)
 		end)
 
 		table.insert(self.menuFunction, function() self:exitGame() end)
