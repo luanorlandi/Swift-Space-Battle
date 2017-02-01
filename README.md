@@ -4,6 +4,8 @@ This is a game developed for mobile, browser and desktop.
 
 Check the [releases](https://github.com/luanorlandi/Swift-Space-Battle/releases) tab and the [html host](https://luanorlandi.github.io/Swift-Space-Battle/) here to play it.
 
+![](https://github.com/luanorlandi/Swift-Space-Battle/blob/master/wiki/game.gif)
+
 ## More than just a game
 
 Swift Space Battle is also part of a scientific research project.
