@@ -24,4 +24,4 @@ There is also a portuguese pdf made at the end of the scientific research projec
 - [Ship sprites](http://millionthvector.blogspot.com.br/)
 
 ## License
-[GPLv3][license]
+(GPLv3)[license]
