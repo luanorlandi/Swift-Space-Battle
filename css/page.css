@@ -1,0 +1,27 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 14px;
+    height:100%;
+    margin:0;
+    padding:0;
+}
+
+#moaiplayer {
+    width: 90%;
+    height: 90%;
+    
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}

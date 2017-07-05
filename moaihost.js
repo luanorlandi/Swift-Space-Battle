@@ -636,6 +636,23 @@ return MoaiJS
 
 function MoaiPlayer(element) {
 	var el = $(element)
+	/*
+  var template = '<div class="moai-window"> \
+                         <div class="moai-header"> \
+                            <span class="moai-title">MOAI</span><span class="moai-status">Loading..</span> \
+                             <div style="clear:both"></div> \
+                         </div> \
+                            <div class="moai-canvas-wrapper"><canvas class="moai-canvas" width="960" height="640" tabindex="1"></canvas></div> \
+                        <div class="moai-footer"> \
+                            <div class="moai-attrib"> \
+                            Made with Moai \
+                            www.getmoai.com \
+                            Copyright (c) 2010-2012 Zipline Games, Inc. All Rights Reserved. \
+                            </div> \
+                        </div> \
+                    </div>';
+    */
+
 	var template = '<div class="moai-window"> \
                     <div class="moai-canvas-wrapper"><canvas class="moai-canvas" width="960" height="640" tabindex="1"></canvas></div> \
                   </div>';
