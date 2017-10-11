@@ -1,5 +1,6 @@
 # Files
 *.bat
+*.DS_Store
 
 # Folders
 distribute
