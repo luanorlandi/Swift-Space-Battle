@@ -1,6 +1,7 @@
 language = {}
 
 require "file/en"
+require "file/es"
 require "file/pt"
 
 function readLanguageFile()
