@@ -4,6 +4,7 @@ require "file/en"
 require "file/es"
 require "file/fr"
 require "file/pt"
+require "file/hu"
 
 function readLanguageFile()
 	local path = locateSaveLocation()
