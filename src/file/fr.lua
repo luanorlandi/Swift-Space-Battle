@@ -3,19 +3,19 @@ language["fr"] = {
 
     menu = {
         play = "JOUER",
-        score = "LE SCORE LE PLUS ÉLEVÉ",
+        score = "MEILLEUR SCORE",
         options = "OPTIONS",
-        about = "SUR",
+        about = "À PROPOS",
         quit = "QUITTER",
-        back = "ARRIÈRE",
+        back = "RETOUR",
         resolution = "RÉSOLUTION",
-        language = "LA LANGUE",
+        language = "LANGUE",
         restart = "REDÉMARRER POUR APPLIQUER DES CHANGEMENTS"
     },
 
     game = {
-        gameOver = "JEU TERMINÉ",
-        record = "NOUVEL ENREGISTREMENT:",
+        gameOver = "GAME OVER",
+        record = "NOUVEAU RECORD:",
         again = "REJOUER?",
         yesAnswer = "OUI",
         noAnswer = "NON"
