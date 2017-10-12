@@ -3,13 +3,13 @@ language["es"] = {
 
     menu = {
         play = "JUGAR",
-        score = "MÁXIMO PUNTAJE",
+        score = "PUNTUACIÓN MÁS ALTA",
         options = "OPCIONES",
         about = "ACERCA DE",
-        quit = "QUITAR",
+        quit = "SALIR",
         back = "ATRÁS",
         resolution = "RESOLUCIÓN",
-        language = "LENGUAGJE",
+        language = "IDIOMA",
         restart = "REINICIAR PARA APLICAR CAMBIOS"
     },
 
