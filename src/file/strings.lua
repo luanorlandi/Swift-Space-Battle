@@ -3,6 +3,7 @@ language = {}
 require "file/en"
 require "file/es"
 require "file/fr"
+require "file/it"
 require "file/pt"
 require "file/hu"
 require "file/sv"
