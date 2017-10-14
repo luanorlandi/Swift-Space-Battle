@@ -25,3 +25,10 @@ body {
 
     margin: auto;
 }
+
+.gh-button{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    user-select: none;
+}
