@@ -1,5 +1,6 @@
 language = {}
 
+require "file/da"
 require "file/de"
 require "file/en"
 require "file/es"
