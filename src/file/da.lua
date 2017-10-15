@@ -3,7 +3,7 @@ language["da"] = {
 
     menu = {
         play = "START",
-        score = "REKORD",
+        score = "REKORDER",
         options = "VALG",
         about = "OM",
         quit = "AFSLUT",
