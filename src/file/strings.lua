@@ -14,6 +14,7 @@ require "file/nl"
 require "file/id"
 require "file/ru"
 require "file/uk"
+require "file/zh-tw"
 
 function readLanguageFile()
 	local path = locateSaveLocation()
@@ -30,20 +31,20 @@ function readLanguageFile()
 		lang = file:read()
 		io.close(file)
 	end
-    
+
     return lang
 end
 
 function writeLanguageFile(lang)
 	local path = locateSaveLocation()
-	
+
 	-- probably a unexpected host (like html)
 	if path == nil then
 		return nil
 	end
 
 	local file = io.open(path .. "/language.lua", "w")
-	
+
 	if file ~= nil then
 		file:write(lang)
 		io.close(file)
