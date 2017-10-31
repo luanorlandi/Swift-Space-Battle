@@ -18,6 +18,6 @@ language["pt"] = {
         record = "NOVO RECORDE:",
         again = "JOGAR NOVAMENTE?",
         yesAnswer = "SIM",
-        noAnswer = "NAO"
+        noAnswer = "NÃO"
     }
 }
