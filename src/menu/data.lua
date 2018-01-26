@@ -1,3 +1,7 @@
+require "menu/languageArray"
+
+local languageArray = getLanguageArraySorted()
+
 MenuData = {}
 MenuData.__index = MenuData
 
@@ -9,6 +13,7 @@ function MenuData:new()
 	
 	M.textBoxPos = {}
 	M.textBoxSelected = 0
+	M.pageLimit = 8
 	
 	M.menuFunction = {}
 	
@@ -173,7 +178,7 @@ function MenuData:createOptionsMenu()
 		self:createBoxesMenu(3)
 		
 		table.insert(self.menuFunction, function() self:createResolutionsMenu() end)
-		table.insert(self.menuFunction, function() self:createLanguagesMenu() end)
+		table.insert(self.menuFunction, function() self:createLanguagesMenu(1, 1) end)
 		table.insert(self.menuFunction, function() self:createMainMenu() end)
 	else
 		local texts = {}
@@ -184,7 +189,7 @@ function MenuData:createOptionsMenu()
 		
 		self:createBoxesMenu(2)
 		
-		table.insert(self.menuFunction, function() self:createLanguagesMenu() end)
+		table.insert(self.menuFunction, function() self:createLanguagesMenu(1, 1) end)
 		table.insert(self.menuFunction, function() self:createMainMenu() end)
 	end
 end
@@ -213,7 +218,7 @@ function MenuData:createResolutionsMenu()
 		table.insert(resolutionsTexts, width .. "x" .. height)
 	end
 	
-	-- include the return button at the end
+	-- include the back button at the end
 	table.insert(self.menuFunction, function() self:createOptionsMenu() end)
 	table.insert(resolutionsTexts, strings.menu.back)
 	
@@ -226,26 +231,58 @@ function MenuData:createResolutionsMenu()
 	interface.textTable[1].selectable = false
 end
 
-function MenuData:createLanguagesMenu()
+function MenuData:createLanguagesMenu(page, firstText)
 	self:clearMenu()
-	
+
 	-- table with all label that appears in the menu
 	local languagesTexts = {}
-	
-	for key, value in pairs(language) do
+
+	lastText = math.min(firstText + self.pageLimit - 3, #languageArray)
+
+	-- check to insert up button
+	if firstText > 1 then
+		local previousPageLastText
+
+		if(firstText - self.pageLimit + 2 > 1 ) then
+			-- count up button
+			previousPageLastText = firstText - self.pageLimit + 3
+		else
+			previousPageLastText = firstText - self.pageLimit + 2
+		end
+
 		table.insert(self.menuFunction, function()
-			writeLanguageFile(key)		-- save ISO
-			changeLanguage(key)
-			self:createOptionsMenu()
+			self:createLanguagesMenu(page - 1, previousPageLastText)
 		end)
-		
-		table.insert(languagesTexts, language[key].name)
+		table.insert(languagesTexts, strings.button.up)
+
+		lastText = lastText - 1
 	end
 	
-	-- include the return button at the end
+	-- insert language change buttons
+	for i = firstText, lastText do
+		local ISO = languageArray[i].ISO
+		local text = language[ISO].name
+
+		table.insert(self.menuFunction, function()
+			writeLanguageFile(ISO) -- save ISO
+			changeLanguage(ISO)
+			self:createOptionsMenu()
+		end)
+		table.insert(languagesTexts, language[ISO].name)
+	end
+
+	-- check to insert down button
+	if(firstText + self.pageLimit - 2 < #languageArray) then
+		table.insert(self.menuFunction, function()
+			self:createLanguagesMenu(page + 1, lastText + 1)
+		end)
+		table.insert(languagesTexts, strings.button.down)
+	end
+
+	-- include the back button at the end
 	table.insert(self.menuFunction, function() self:createOptionsMenu() end)
 	table.insert(languagesTexts, strings.menu.back)
-	
+
 	self:createBoxesMenu(#languagesTexts)
 	interface:createMenu(languagesTexts)
 end

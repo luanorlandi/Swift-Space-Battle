@@ -2,10 +2,6 @@ require "interface/menu/background"
 require "interface/menu/menuText"
 require "interface/menu/title"
 
-local textSize = math.floor(45 * window.scale)
-local menuFont = MOAIFont.new()
-menuFont:loadFromTTF("font//zekton free.ttf", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-ãõç", textSize, 72)
-
 MenuInterface = {}
 MenuInterface.__index = MenuInterface
 
@@ -17,11 +13,16 @@ function MenuInterface:new()
 	M.background = Background:new()
 	
 	M.textTable = {}
-	M.textSize = textSize
-	M.textGap = 1.75 * M.textSize		-- space between labels
-	M.textStart = 50 * window.scale		-- first text position
+	M.textStart = math.floor(50 * window.scale) -- first text position
+	M.textSize = math.floor(45 * window.scale)
+	M.textGap = math.floor(70 * window.scale) -- space between labels
+	M.font = MOAIFont.new()
+	M.font:loadFromTTF("font//NotoSans-Regular.ttf", textSize, 72)
 
-	M.delay = 2.0		-- seconds
+	M.paginateUp = "▲"
+	M.paginateDown = "▼"
+
+	M.delay = 2.0 -- seconds
 	
 	M.title = Title:new(Vector:new(0, M.textStart + 220 * window.scale))
 	M.title.sprite:setColor(1, 1, 1, 0)
@@ -43,7 +44,7 @@ function MenuInterface:createMenu(menuTable, start)
 	for i = 1, #menuTable, 1 do
 		local pos = Vector:new(0, start - ((i-1) * self.textGap))
 		
-		local text = MenuText:new(menuTable[i], pos)
+		local text = MenuText:new(menuTable[i], pos, self.textSize, self.font)
 		table.insert(self.textTable, text)
 	end
 end

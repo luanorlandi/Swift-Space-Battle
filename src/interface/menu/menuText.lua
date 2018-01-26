@@ -1,11 +1,7 @@
-local textSize = math.floor(45 * window.scale)
-local menuFont = MOAIFont.new()
-menuFont:loadFromTTF("font//zekton free.ttf", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-ãõç", textSize, 72)
-
 MenuText = {}
 MenuText.__index = MenuText
 
-function MenuText:new(text, pos)
+function MenuText:new(text, pos, textSize, font)
 	-- create a label in position "pos"
 	local T = {}
 	setmetatable(T, MenuText)
@@ -16,7 +12,7 @@ function MenuText:new(text, pos)
 	T.selectable = true
 	
 	T.text = MOAITextBox.new()
-	T.text:setFont(menuFont)
+	T.text:setFont(font)
 	T.text:setString(T.string)
 	T.text:setTextSize(textSize, 72)
 	T.text:setYFlip(true)
