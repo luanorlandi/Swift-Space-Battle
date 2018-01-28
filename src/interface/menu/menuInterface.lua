@@ -17,7 +17,7 @@ function MenuInterface:new()
 	M.textSize = math.floor(45 * window.scale)
 	M.textGap = math.floor(70 * window.scale) -- space between labels
 	M.font = MOAIFont.new()
-	M.font:loadFromTTF("font//NotoSans-Regular.ttf", textSize, 72)
+	M.font:loadFromTTF("font//NotoSans-Regular.ttf", M.textSize, 72)
 
 	M.paginateUp = "▲"
 	M.paginateDown = "▼"

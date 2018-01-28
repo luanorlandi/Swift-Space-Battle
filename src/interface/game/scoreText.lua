@@ -1,18 +1,15 @@
 require "effect/blend"
 
-local scoreFontSize = math.floor(40 * window.scale)
-local scoreFont = MOAIFont.new()
-scoreFont:loadFromTTF("font//RosesareFF0000.ttf", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-", scoreFontSize, 72)
-
 Score = {}
 Score.__index = Score
 
-function Score:new(score, pos)
+function Score:new(score, pos, font)
 	local S = {}
 	setmetatable(S, Score)
 	
 	S.number = score
-	S.scoreText = GameText:new("" .. S.number, scoreFont, scoreFontSize, pos)
+	S.scoreFontSize = math.floor(40 * window.scale)
+	S.scoreText = GameText:new("" .. S.number, font, S.scoreFontSize, pos)
 	
 	return S
 end
@@ -27,10 +24,10 @@ function Score:setCombo(combo)
 	self.scoreText.text:setString("x" .. self.number)
 end
 
-function showScoreAnim(score, pos)
+function showScoreAnim(score, pos, font)
 	-- animate the score
-	local scoreProp = Score:new(score, pos)
-	scoreProp.scoreText.text:setTextSize(math.floor(0.8 * scoreFontSize))
+	local scoreProp = Score:new(score, pos, font)
+	scoreProp.scoreText.text:setTextSize(math.floor(0.8 * scoreProp.scoreFontSize))
 	
 	table.insert(interface.scoreAnimTable, scoreProp)
 	
@@ -56,10 +53,10 @@ function showScoreAnim(score, pos)
 	window.layer:removeProp(scoreProp.scoreText.text)
 end
 
-function showScoreEarnedAnim(score)
+function showScoreEarnedAnim(score, font)
 	-- animate the score in the corner
-	local scoreProp = Score:new("+" .. score, interface.scoreEarnedPos)
-	scoreProp.scoreText.text:setTextSize(math.floor(0.8 * scoreFontSize))
+	local scoreProp = Score:new("+" .. score, interface.scoreEarnedPos, font)
+	scoreProp.scoreText.text:setTextSize(math.floor(0.8 * scoreProp.scoreFontSize))
 	
 	table.insert(interface.scoreAnimTable, scoreProp)
 	

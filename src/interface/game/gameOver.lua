@@ -1,17 +1,7 @@
-local gameOverFontSize = math.floor(70 * window.scale)
-local gameOverFont = MOAIFont.new()
-gameOverFont:loadFromTTF("font//RosesareFF0000.ttf", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-", gameOverFontSize, 72)
-
-local textFontSize = math.floor(40 * window.scale)
-local textFont = MOAIFont.new()
-textFont:loadFromTTF("font//RosesareFF0000.ttf", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-", textFontSize, 72)
-
-local gameOverTextSize = 70 * window.scale
-
 GameOver = {}
 GameOver.__index = GameOver
 
-function GameOver:new(score)
+function GameOver:new(score, font)
 	-- if receive a score, it will show a new record
 
 	local G = {}
@@ -19,7 +9,9 @@ function GameOver:new(score)
 	
 	G.gap = 80 * window.scale
 
-	G.gameOverText = GameText:new(strings.game.gameOver, gameOverFont, gameOverFontSize, Vector:new(0, 2 * G.gap))
+	G.gameOverFontSize = math.floor(70 * window.scale)
+	G.textFontSize = math.floor(40 * window.scale)
+	G.gameOverText = GameText:new(strings.game.gameOver, font, G.gameOverFontSize, Vector:new(0, 2 * G.gap))
 	G.gameOverText.text:setColor(1, 0, 0)
 	
 	-- if did not scored a new record, do not show a score label
@@ -29,14 +21,14 @@ function GameOver:new(score)
 	local textPos = 0
 	
 	if score ~= nil then
-		G.newRecordText = GameText:new(strings.game.record, textFont, textFontSize, Vector:new(0, -textPos * G.gap))
+		G.newRecordText = GameText:new(strings.game.record, textFont, G.textFontSize, Vector:new(0, -textPos * G.gap))
 		textPos = textPos + 1
 		
-		G.highestScoreText = GameText:new(tostring(score), textFont, textFontSize, Vector:new(0, -textPos * G.gap))
+		G.highestScoreText = GameText:new(tostring(score), font, G.textFontSize, Vector:new(0, -textPos * G.gap))
 		textPos = textPos + 1
 	end
 	
-	G.playAgainText = GameText:new(strings.game.again, textFont, textFontSize, Vector:new(0, -textPos * G.gap))
+	G.playAgainText = GameText:new(strings.game.again, font, G.textFontSize, Vector:new(0, -textPos * G.gap))
 	textPos = textPos + 1
 	
 	local yesPos = Vector:new(0, -textPos * G.gap)
@@ -45,11 +37,11 @@ function GameOver:new(score)
 	local noPos = Vector:new(0, -textPos * G.gap)
 	textPos = textPos + 1
 	
-	G.yesText = GameText:new(strings.game.yesAnswer, textFont, textFontSize, yesPos)
-	G.noText = GameText:new(strings.game.noAnswer, textFont, textFontSize, noPos)
+	G.yesText = GameText:new(strings.game.yesAnswer, font, G.textFontSize, yesPos)
+	G.noText = GameText:new(strings.game.noAnswer, font, G.textFontSize, noPos)
 	
-	G.yesBoxPos = Rectangle:new(yesPos, Vector:new(window.width / 2, textFontSize / 2))
-	G.noBoxPos = Rectangle:new(noPos, Vector:new(window.width / 2, textFontSize / 2))
+	G.yesBoxPos = Rectangle:new(yesPos, Vector:new(window.width / 2, G.textFontSize / 2))
+	G.noBoxPos = Rectangle:new(noPos, Vector:new(window.width / 2, G.textFontSize / 2))
 	
 	G.textBoxSelected = nil
 	
