@@ -475,7 +475,9 @@ MoaiJS.prototype.OpenWindowFunc = function(title,width,height) {
 
 	//hook mouse
 	canvas.addEventListener("mousedown",this.mousedown.bind(this),false);
+	canvas.addEventListener("touchstart",this.mousedown.bind(this),false);
 	canvas.addEventListener("mouseup",this.mouseup.bind(this),false);
+	canvas.addEventListener("touchend",this.mouseup.bind(this),false);
 	canvas.addEventListener("mousemove",this.mousemove.bind(this),false);
 
 	//grab focus on hover
