@@ -21,7 +21,7 @@ function GameOver:new(score, font)
 	local textPos = 0
 	
 	if score ~= nil then
-		G.newRecordText = GameText:new(strings.game.record, textFont, G.textFontSize, Vector:new(0, -textPos * G.gap))
+		G.newRecordText = GameText:new(strings.game.record, font, G.textFontSize, Vector:new(0, -textPos * G.gap))
 		textPos = textPos + 1
 		
 		G.highestScoreText = GameText:new(tostring(score), font, G.textFontSize, Vector:new(0, -textPos * G.gap))
